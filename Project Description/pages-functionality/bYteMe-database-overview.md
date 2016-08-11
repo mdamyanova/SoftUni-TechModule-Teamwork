@@ -1,6 +1,6 @@
 #bYte me Database overview
 Database name: **bYteMe**
-![Database](https://github.com/mdamyanova/SoftwareTechnologies-Teamwork-Project/blob/master/Project%20Description/pages-functionality/database-screenshot.jpg)
+![Database Screenshot](https://github.com/mdamyanova/SoftwareTechnologies-Teamwork-Project/blob/master/Project%20Description/pages-functionality/bYteMe-database-screenshot.jpg)
 **Tables:**
 
 1. **Users**
