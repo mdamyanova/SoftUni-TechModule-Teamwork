@@ -1,33 +1,34 @@
 #bYte me Database overview
 Database name: **bYteMe**
-
+![Database](https://github.com/mdamyanova/SoftwareTechnologies-Teamwork-Project/blob/master/Project%20Description/pages-functionality/database-screenshot.jpg)
 **Tables:**
 
 1. **Users**
- * columns: 
+ * Columns: 
     * Id (int, auto increment, unique)
     * Username (varchar(50), not null)
     * FullName (nvarchar(100), not null)
     * PasswordHash (varbinary(64), not null) 
     * ProfilePhoto (image, not null) 
-    * Biography (ntext)
-    * Likes (uint) 
-    * Dislikes (uint)
+    * Biography (ntext) - _checking for null_
+    * Likes (int) - _checking for positive number, if it's null - 0_
+    * Dislikes (int) - _checking for positive number, if it's null - 0_
 2. **Photos – _relationship with user_**
- * columns: 
+ * Columns: 
+    * AuthorId (int) 
     * PhotoId (int, auto increment, unique)
     * Photo (image, not null)
-    * Description (ntext, not null)
+    * Description (ntext) - _checking for null_
 3. **Posts – _relationship with user_**
- *	columns: 
+ *	Columns: 
     * Id (int, auto increment, not null)
     * AuthorId (int, auto increment, not null, relationship with Users Id)
     * Title (nvarchar(200), not null)
-    * Content (ntext, not null)
+    * Body (ntext, not null)
     * Date (datetime, not null)
 4. **Orders**
- *	columns: 
-    *	Id (int, auto increment, not null) 
+ *	Columns: 
+    *	OrderId (int, auto increment, not null) 
     *	Photo (image, not null)
     *	Description (ntext, not null)
-    *	RequiredDislikes (uint, not null)
+    *	RequiredDislikes (int, not null)
