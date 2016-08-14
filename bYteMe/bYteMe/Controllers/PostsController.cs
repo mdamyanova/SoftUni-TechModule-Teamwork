@@ -6,20 +6,18 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using bYteMe.Models;
+using bYteMe;
 
 namespace bYteMe.Controllers
 {
-    [Authorize]
     public class PostsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private bYteMeDbContext db = new bYteMeDbContext();
 
         // GET: Posts
         public ActionResult Index()
         {
-            var posts = this.db.Posts.Include(p => p.Author).OrderByDescending(p => p.Date).Take(3);
-            return View(posts.ToList());
+            return View(db.Posts.ToList());
         }
 
         // GET: Posts/Details/5
@@ -48,7 +46,7 @@ namespace bYteMe.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Body,Date")] Post post)
+        public ActionResult Create([Bind(Include = "AuthorId,PostId,Title,Body,Date")] Post post)
         {
             if (ModelState.IsValid)
             {
@@ -61,7 +59,6 @@ namespace bYteMe.Controllers
         }
 
         // GET: Posts/Edit/5
-        [Authorize(Roles = "Administrators")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -81,8 +78,7 @@ namespace bYteMe.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrators")]
-        public ActionResult Edit([Bind(Include = "Id,Title,Body,Datem,AuthorId")] Post post)
+        public ActionResult Edit([Bind(Include = "AuthorId,PostId,Title,Body,Date")] Post post)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +90,6 @@ namespace bYteMe.Controllers
         }
 
         // GET: Posts/Delete/5
-        [Authorize(Roles = "Administrators")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -110,7 +105,6 @@ namespace bYteMe.Controllers
         }
 
         // POST: Posts/Delete/5
-        [Authorize(Roles = "Administrators")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

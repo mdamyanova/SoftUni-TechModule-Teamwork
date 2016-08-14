@@ -19,6 +19,6 @@ namespace bYteMe.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<bYteMe.Models.Post> Posts { get; set; }
+        public System.Data.Entity.DbSet<Post> Posts { get; set; }
     }
 }
