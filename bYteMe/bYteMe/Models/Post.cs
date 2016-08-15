@@ -12,8 +12,7 @@ namespace bYteMe
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int AuthorId { get; set; }
-
-        [Key]
+        
         [Column(Order = 1)]
         public int PostId { get; set; }
 

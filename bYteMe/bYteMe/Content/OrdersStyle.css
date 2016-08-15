@@ -1,0 +1,41 @@
+﻿body {
+    background-color: blanchedalmond;
+}
+
+#orderButton {
+    float: right;
+}
+
+.listProducts {
+  margin: 20px;
+}
+ 
+#list {
+  list-style-type: none;
+  width: 500px;
+}
+ 
+#orderImg {
+  vertical-align: text-top;
+  padding: 10px;
+  float: left;
+  margin: 0 15px 0 0;
+}
+ 
+#currentProduct {
+  font: 200 12px/1.5 Georgia, Times New Roman, serif;
+}
+ 
+#currentProduct {
+  padding: 10px;
+  overflow: auto;
+}
+ 
+#currentProduct:hover{
+  background: #eee;
+  cursor: pointer;
+}
+
+#requiredDislikes {
+    float: right;
+}
