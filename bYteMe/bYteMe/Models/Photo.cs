@@ -17,9 +17,8 @@ namespace bYteMe
         [Column(Order = 1)]
         public int PhotoId { get; set; }
 
-        [Key]
         [Column("Photo", Order = 2)]
-        public byte[] Photo1 { get; set; }
+        public byte[] PhotoPicture { get; set; }
 
         [Column(TypeName = "ntext")]
         public string Description { get; set; }

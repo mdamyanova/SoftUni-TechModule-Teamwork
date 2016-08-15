@@ -17,16 +17,16 @@ namespace bYteMe
         [Column(Order = 1)]
         public int PostId { get; set; }
 
-        [Key]
+  
         [Column(Order = 2)]
         [StringLength(200)]
         public string Title { get; set; }
 
-        [Key]
+    
         [Column(Order = 3, TypeName = "ntext")]
         public string Body { get; set; }
 
-        [Key]
+    
         [Column(Order = 4)]
         public DateTime Date { get; set; }
     }
