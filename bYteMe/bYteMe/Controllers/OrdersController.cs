@@ -7,6 +7,8 @@
     using System.Net.Mime;
     using System.Web.Mvc;
 
+    using bYteMe.Models;
+
     [Authorize]
     public class OrdersController : Controller
     {

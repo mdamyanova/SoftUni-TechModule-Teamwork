@@ -10,6 +10,8 @@ using bYteMe;
 
 namespace bYteMe.Controllers
 {
+    using bYteMe.Models;
+
     public class PostsController : Controller
     {
         private bYteMeDbContext db = new bYteMeDbContext();

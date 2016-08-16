@@ -5,15 +5,16 @@ namespace bYteMe.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<bYteMe.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<bYteMe.Models.bYteMeDbContext>
     {
         public Configuration()
         {
+            AutomaticMigrationDataLossAllowed = true;
             AutomaticMigrationsEnabled = true;
-            ContextKey = "bYteMe.Models.ApplicationDbContext";
+            ContextKey = "bYteMe.Models.bYteMeDbContext";
         }
 
-        protected override void Seed(bYteMe.Models.ApplicationDbContext context)
+        protected override void Seed(bYteMe.Models.bYteMeDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

@@ -4,6 +4,8 @@
     using System.Linq;
     using System.Web.Mvc;
 
+    using bYteMe.Models;
+
     //[Authorize]
     public class ProfilesController : Controller
     {
