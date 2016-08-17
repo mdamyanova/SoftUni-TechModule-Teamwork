@@ -7,7 +7,7 @@
     {
         public ActionResult Index()
         {
-            throw new System.NotImplementedException();
+            return this.View();
         }
     }
 }
