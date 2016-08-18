@@ -2,9 +2,15 @@
     ViewBag.Title = "home";
 }
 
+<head>
+    <title>
+        home page
+    </title>
+    <link rel="Stylesheet" href="@Href("~/Content/HomeStyle.css")" /> 
+</head>
 <body>
-<div class="title-site-text">
-    @ViewBag.SiteTitle<br/>
-    @ViewBag.Subtitle
+<div class="text">
+    <p id="title">@ViewBag.SiteTitle</p><br/>
+    <p id="subtitle">@ViewBag.Subtitle</p>
 </div>
 </body>

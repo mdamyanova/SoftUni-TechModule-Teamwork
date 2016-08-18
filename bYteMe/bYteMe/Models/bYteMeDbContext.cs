@@ -1,7 +1,5 @@
 ﻿using System.Data.Entity;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
+
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace bYteMe.Models
@@ -14,11 +12,6 @@ namespace bYteMe.Models
         {
         }
 
-        public static bYteMeDbContext Create()
-        {
-            return new bYteMeDbContext();
-        }
-
         public virtual DbSet<Order> Orders { get; set; }
 
         public virtual DbSet<Photo> Photos { get; set; }
@@ -27,14 +20,19 @@ namespace bYteMe.Models
 
         public override IDbSet<User> Users { get; set; }
 
+        public static bYteMeDbContext Create()
+        {
+            return new bYteMeDbContext();
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
                 .Property(e => e.UserName)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
-            modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
+            modelBuilder.Entity<IdentityUserLogin>().HasKey(l => l.UserId);
+            modelBuilder.Entity<IdentityRole>().HasKey(r => r.Id);
             modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
         }
     }

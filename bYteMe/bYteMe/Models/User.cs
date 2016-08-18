@@ -24,11 +24,9 @@ namespace bYteMe.Models
         [StringLength(100)]
         public string FullName { get; set; }
 
-        //[Column(Order = 3)]
-        //[MaxLength(64)]
-        //public override string PasswordHash { get; set; }
-
-
+        // [Column(Order = 3)]
+        // [MaxLength(64)]
+        // public override string PasswordHash { get; set; }
         [Column(Order = 4)]
         public byte[] ProfilePhoto { get; set; }
 

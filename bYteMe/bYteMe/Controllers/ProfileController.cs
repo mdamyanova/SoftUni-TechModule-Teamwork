@@ -7,6 +7,7 @@
     {
         public ActionResult Index()
         {
+            // TODO: Get current user and show info for him
             return this.View();
         }
     }

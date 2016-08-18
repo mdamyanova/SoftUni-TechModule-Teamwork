@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using bYteMe;
 
 namespace bYteMe.Controllers
 {
@@ -19,7 +14,7 @@ namespace bYteMe.Controllers
         // GET: Posts
         public ActionResult Index()
         {
-            return View(db.Posts.ToList());
+            return this.View(this.db.Posts.ToList());
         }
 
         // GET: Posts/Details/5
@@ -29,18 +24,20 @@ namespace bYteMe.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Posts.Find(id);
+
+            var post = this.db.Posts.Find(id);
             if (post == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(post);
+
+            return this.View(post);
         }
 
         // GET: Posts/Create
         public ActionResult Create()
         {
-            return View();
+            return this.View();
         }
 
         // POST: Posts/Create
@@ -50,14 +47,14 @@ namespace bYteMe.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "AuthorId,PostId,Title,Body,Date")] Post post)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                db.Posts.Add(post);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                this.db.Posts.Add(post);
+                this.db.SaveChanges();
+                return this.RedirectToAction("Index");
             }
 
-            return View(post);
+            return this.View(post);
         }
 
         // GET: Posts/Edit/5
@@ -67,12 +64,14 @@ namespace bYteMe.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Posts.Find(id);
+
+            var post = this.db.Posts.Find(id);
             if (post == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(post);
+
+            return this.View(post);
         }
 
         // POST: Posts/Edit/5
@@ -82,13 +81,14 @@ namespace bYteMe.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "AuthorId,PostId,Title,Body,Date")] Post post)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                db.Entry(post).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                this.db.Entry(post).State = EntityState.Modified;
+                this.db.SaveChanges();
+                return this.RedirectToAction("Index");
             }
-            return View(post);
+
+            return this.View(post);
         }
 
         // GET: Posts/Delete/5
@@ -98,12 +98,14 @@ namespace bYteMe.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Posts.Find(id);
+
+            var post = this.db.Posts.Find(id);
             if (post == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(post);
+
+            return this.View(post);
         }
 
         // POST: Posts/Delete/5
@@ -111,18 +113,19 @@ namespace bYteMe.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Post post = db.Posts.Find(id);
-            db.Posts.Remove(post);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            var post = this.db.Posts.Find(id);
+            this.db.Posts.Remove(post);
+            this.db.SaveChanges();
+            return this.RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                this.db.Dispose();
             }
+
             base.Dispose(disposing);
         }
     }

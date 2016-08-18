@@ -4,7 +4,6 @@
     using System.Drawing;
     using System.IO;
     using System.Linq;
-    using System.Net.Mime;
     using System.Web.Mvc;
 
     using bYteMe.Models;
@@ -36,11 +35,9 @@
                                                 "Брат, работата няма да стане, видяло се е. Може би свалките не са за теб. Ти достигна до последното ниво на утешителните награди. Събери аверите и се почерпете. Друг вариант вече не ти остана."
                                             };
 
-
                 for (int i = 1; i <= DefaultCountOfOrders; i++)
                 {
-                    Order order = new Order();
-                    order.OrderId = i;
+                    Order order = new Order { OrderId = i };
                     Image img = Image.FromFile(imagesPaths[i - 1]);
                     byte[] arr;
                     using (MemoryStream ms = new MemoryStream())
@@ -53,7 +50,7 @@
                     order.Description = descriptions[i - 1];
 
                     int dislikes = DefaultCountDislikes * i * i;
-                    order.RequiredDislikes = DefaultCountDislikes * i;
+                    order.RequiredDislikes = dislikes * i;
                     db.Orders.Add(order);
                 }
 
