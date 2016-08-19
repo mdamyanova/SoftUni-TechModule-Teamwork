@@ -6,6 +6,10 @@ namespace bYteMe.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
+        [Display(Name = "потребителско име")]
+        public string UserName { get; set; }
+
+        [Required]
         [Display(Name = "имейл")]
         public string Email { get; set; }
     }
@@ -125,6 +129,10 @@ namespace bYteMe.Models
 
     public class ForgotPasswordViewModel
     {
+        [Required]
+        [Display(Name = "потребителско име")]
+        public string UserName { get; set; }
+
         [Required]
         [Display(Name = "имейл")]
         public string Email { get; set; }
