@@ -8,6 +8,11 @@ namespace bYteMe
 
     public partial class Post
     {
+        public Post()
+        {
+            this.Date = DateTime.Now;
+        }
+
         [Key]
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
