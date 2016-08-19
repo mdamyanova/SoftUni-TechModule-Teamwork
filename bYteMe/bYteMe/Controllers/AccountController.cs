@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -14,9 +11,6 @@ using Microsoft.Owin.Security;
 
 namespace bYteMe.Controllers
 {
-    using System.Data.Entity.Validation;
-    using System.Diagnostics;
-
     [Authorize]
     public class AccountController : Controller
     {
@@ -88,8 +82,7 @@ namespace bYteMe.Controllers
                 case SignInStatus.LockedOut:
                     return this.View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return this.RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
+                    return this.RedirectToAction("SendCode", new { ReturnUrl = returnUrl, model.RememberMe });
                 default:
                     this.ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return this.View(model);
@@ -130,7 +123,6 @@ namespace bYteMe.Controllers
                     return this.RedirectToLocal(model.ReturnUrl);
                 case SignInStatus.LockedOut:
                     return this.View("Lockout");
-                case SignInStatus.Failure:
                 default:
                     this.ModelState.AddModelError(string.Empty, "Invalid code.");
                     return this.View(model);
@@ -148,54 +140,45 @@ namespace bYteMe.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(ExtendedIdentityModels model)
         {
-            try
+            if (this.ModelState.IsValid)
             {
-                if (this.ModelState.IsValid)
+                if (model.UserProfilePicture != null)
                 {
-                    //TODO: Fix Email property to not cause null exception
-                    var user = new User
+                    if (model.UserProfilePicture.ContentLength > (4 * 1024 * 1024))
+                    {
+                        this.ModelState.AddModelError("CustomError", "Image can not be lager than 4MB.");
+                        return this.View();
+                    }
+                    if (!(model.UserProfilePicture.ContentType == "image/jpeg" || model.UserProfilePicture.ContentType == "image/gif"))
+                    {
+                        this.ModelState.AddModelError("CustomError", "Image must be in jpeg or gif format.");
+                    }
+                }
+                if (model.UserProfilePicture != null)
+                {
+                    byte[] data = new byte[model.UserProfilePicture.ContentLength];
+                    model.UserProfilePicture.InputStream.Read(data, 0, model.UserProfilePicture.ContentLength);
+                    var user = new User()
                                    {
                                        UserName = model.UserName,
                                        FullName = model.FullName,
                                        Biography = model.Biography,
-                                       ProfilePhoto = model.ProfilePhoto,
+                                       ProfilePhoto = data,
                                        Password = model.Password,
-                                       Email = "defaultemail@gmail.com"
-                                      
+                                       Email = model.Email
                                    };
-                    var result = await this.UserManager.CreateAsync(user, user.Password);
+                    var result = await this.UserManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
-                        await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        await this.SignInManager.SignInAsync(user, false, false);
 
-                        // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                        // Send an email with this link
-                        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                        // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                         return this.RedirectToAction("Index", "Home");
                     }
-
                     this.AddErrors(result);
                 }
             }
-
-            catch (DbEntityValidationException dbEx)
-            {
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        Trace.TraceInformation(
-                            "Property: {0} Error: {1}",
-                            validationError.PropertyName,
-                            validationError.ErrorMessage);
-                    }
-                }
-            }
-
             // If we got this far, something failed, redisplay form
             return this.View(model);
         }
@@ -268,7 +251,7 @@ namespace bYteMe.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return View(model);
+                return this.View(model);
             }
 
             var user = await this.UserManager.FindByNameAsync(model.UserName);
@@ -329,13 +312,12 @@ namespace bYteMe.Controllers
             {
                 return this.View();
             }
-
             // Generate the token and send it
             if (!await this.SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider))
             {
-                return View("Error");
+                return this.View("Error");
             }
-            return this.RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
+            return this.RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, model.ReturnUrl, model.RememberMe });
         }
 
         // GET: /Account/ExternalLoginCallback
@@ -358,7 +340,6 @@ namespace bYteMe.Controllers
                     return this.View("Lockout");
                 case SignInStatus.RequiresVerification:
                     return this.RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
-                case SignInStatus.Failure:
                 default:
                     // If the user does not have an account, then prompt the user to create an account
                     this.ViewBag.ReturnUrl = returnUrl;
@@ -373,11 +354,10 @@ namespace bYteMe.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
-            if (User.Identity.IsAuthenticated)
+            if (this.User.Identity.IsAuthenticated)
             {
                 return this.RedirectToAction("Index", "Manage");
             }
-
             if (this.ModelState.IsValid)
             {
                 // Get the information about the user from the external login provider

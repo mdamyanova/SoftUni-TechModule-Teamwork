@@ -1,6 +1,28 @@
 ﻿@model List<bYteMe.Models.User>
-
+@{
+    ViewBag.Title = "profiles";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="Stylesheet" href="@Href("~/Content/ProfilesStyle.css")"/>
+    <title>orders</title>
+</head>
+<body>
 @foreach (var user in Model)
 {
-    <div>@user.UserName</div>
+    var base64 = Convert.ToBase64String(user.ProfilePhoto);
+    var imgSrc = $"data:image/gif;base64,{base64}";
+    <div class="listProfiles">
+        <ul id="list">
+            <li id="currentProfile">
+                <!--TODO: Add profile picture and hyperlink to names of user to go to their profile-->
+                <img id="orderImg" class="cut-out" src="@imgSrc" />
+                <span id="userName">@user.FullName (@user.UserName)</span>
+                <span id="likes">Likes: @user.Likes Dislikes: @user.Dislikes</span>
+            </li>
+        </ul>
+    </div>
 }
+</body>
+</html>

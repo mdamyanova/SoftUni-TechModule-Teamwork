@@ -5,7 +5,7 @@
 
     using bYteMe.Models;
 
-    // [Authorize]
+    [Authorize]
     public class ProfilesController : Controller
     {
         public ActionResult Index()
