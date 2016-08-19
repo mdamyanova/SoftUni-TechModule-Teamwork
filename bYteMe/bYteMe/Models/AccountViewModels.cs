@@ -6,8 +6,8 @@ namespace bYteMe.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
-        [Display(Name = "Username")]
-        public string UserName { get; set; }
+        [Display(Name = "имейл")]
+        public string Email { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -32,12 +32,12 @@ namespace bYteMe.Models
         public string Provider { get; set; }
 
         [Required]
-        [Display(Name = "Code")]
+        [Display(Name = "код")]
         public string Code { get; set; }
 
         public string ReturnUrl { get; set; }
 
-        [Display(Name = "Remember this browser?")]
+        [Display(Name = "Запомняне на браузъра?")]
         public bool RememberBrowser { get; set; }
 
         public bool RememberMe { get; set; }
@@ -46,14 +46,14 @@ namespace bYteMe.Models
     public class ForgotViewModel
     {
         [Required]
-        [Display(Name = "Username")]
+        [Display(Name = "потребителско име")]
         public string UserName { get; set; }
     }
 
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Username")]
+        [Display(Name = "потребителско име")]
         public string Username { get; set; }
 
         // [Required]
@@ -62,62 +62,62 @@ namespace bYteMe.Models
         // public string Email { get; set; }
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "парола")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Запомняне?")]
         public bool RememberMe { get; set; }
     }
 
     public class RegisterViewModel
     {
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "имейл")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
+        [StringLength(100, ErrorMessage = "{0} трябва да бъде най-малко {2} символа.", MinimumLength = 3)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "парола")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "потвърждаване на парола")]
+        [Compare("Password", ErrorMessage = "Паролите не съвпадат.")]
         public string ConfirmPassword { get; set; }
         
         [Required]
-        [Display(Name = "Username")]
-        [StringLength(50, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
+        [Display(Name = "потребителско име")]
+        [StringLength(50, ErrorMessage = "{0} трябва да бъде най-малко {2} символа.", MinimumLength = 3)]
         public string UserName { get; set; }
 
         [Required]
-        [Display(Name = "Full name")]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 5)]
+        [Display(Name = "име и фамилия")]
+        [StringLength(100, ErrorMessage = "{0} трябва да бъде най-малко {2} символа.", MinimumLength = 5)]
         public string FullName { get; set; }
 
-        [Display(Name = "Biography")]
+        [Display(Name = "биография")]
         public string Biography { get; set; }
 
-        [Display(Name = "Profile Photo")]
+        [Display(Name = "профилна снимка")]
         public byte[] ProfilePhoto { get; set; }
     }
 
     public class ResetPasswordViewModel
     {
         [Required]
-        [Display(Name = "Username")]
+        [Display(Name = "потребителско име")]
         public string UserName { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
+        [StringLength(100, ErrorMessage = "{0} трябва да бъде най-малко {2} символа.", MinimumLength = 3)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "парола")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "потвърждаване на парола")]
+        [Compare("Password", ErrorMessage = "Паролите не съвпадат.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
@@ -126,7 +126,7 @@ namespace bYteMe.Models
     public class ForgotPasswordViewModel
     {
         [Required]
-        [Display(Name = "Username")]
-        public string UserName { get; set; }
+        [Display(Name = "имейл")]
+        public string Email { get; set; }
     }
 }

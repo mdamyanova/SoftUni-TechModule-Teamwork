@@ -8,7 +8,7 @@ namespace bYteMe.Controllers
         public ActionResult Index()
         {
             this.ViewBag.SiteTitle = "bYte me";
-            this.ViewBag.Subtitle = "stop the recursion of your love life";
+            this.ViewBag.Subtitle = "сложете край на рекурсията в любовния ви живот";
 
             return this.View();
         }

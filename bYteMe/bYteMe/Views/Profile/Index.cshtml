@@ -3,41 +3,13 @@
 @{
     Layout = null;
 }
-@{  WebImage photo = null;
-    var newFileName = "";
-    var imagePath = "";
-
-    if (IsPost)
-    {
-        photo = WebImage.GetImageFromRequest();
-        if (photo != null)
-        {
-            newFileName = Guid.NewGuid().ToString() + "_" +
-                Path.GetFileName(photo.FileName);
-            imagePath = @"images\" + newFileName;
-
-            photo.Save(@"~\" + imagePath);
-        }
-    }
-}
 <!DOCTYPE html>
 
 <html>
 <head>
-    <title>title</title>
+    <title>профил</title>
 </head>
 <body>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ProfilePhoto, new { @class = "col-md-2 control-label" })
-        <form action="" method="post" enctype="multipart/form-data">
-            <fieldset>
-                <legend> Upload Image </legend>
-                <label for="Image">Image</label>
-                <input type="file" name="Image" />
-                <br />
-                <input type="submit" value="Upload" />
-            </fieldset>
-        </form>
-    </div>
+  
 </body>
 </html>

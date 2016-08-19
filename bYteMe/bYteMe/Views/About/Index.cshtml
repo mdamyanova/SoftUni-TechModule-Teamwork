@@ -1,16 +1,12 @@
 ﻿@{
-    ViewBag.Title = "about";
+    ViewBag.Title = "за нас";
 }
-    @*List<string>
-    urlMembers = new List<string>
-        {
-        "https://web.facebook.com/profile.php?id=1729844621",
-        "https://web.facebook.com/mirela95",
-        "https://web.facebook.com/tomislav.tashev"
-        };
-
-        var imgPaths = new string[3];*@
-    <h2>за нас</h2>
+    <h2>@ViewBag.Title</h2>
 <div>
     @ViewBag.DescriptionText
+    <img id="orderImg" class="cut-out" src="~/images/" />
+    <p>Отбор Rakija: </p>
+    <span><a href="https://facebook.com/profile.php?id=1729844621">Иван Иванов</a></span>,
+    <span><a href="https://facebook.com/mirela95">Мирела Дамянова</a></span>,
+    <span><a href="https://facebook.com/tomislav.tashev">Томислав Ташев</a></span>
 </div>

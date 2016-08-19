@@ -58,12 +58,12 @@ namespace bYteMe.Controllers
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             this.ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
+                message == ManageMessageId.ChangePasswordSuccess ? "Паролата е променена."
+                : message == ManageMessageId.SetPasswordSuccess ? "Паролата е зададена."
                 : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                : message == ManageMessageId.Error ? "Възникна грешка."
+                : message == ManageMessageId.AddPhoneSuccess ? "Телефонният ви номер е добавен."
+                : message == ManageMessageId.RemovePhoneSuccess ? "Телефонният ви номер е премахнат."
                 : string.Empty;
 
             var userId = this.User.Identity.GetUserId();
@@ -128,7 +128,7 @@ namespace bYteMe.Controllers
                 var message = new IdentityMessage
                 {
                     Destination = model.Number,
-                    Body = "Your security code is: " + code
+                    Body = "Вашият секретен код е: " + code
                 };
                 await this.UserManager.SmsService.SendAsync(message);
             }
@@ -145,7 +145,7 @@ namespace bYteMe.Controllers
             var user = await this.UserManager.FindByIdAsync(this.User.Identity.GetUserId());
             if (user != null)
             {
-                await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                await this.SignInManager.SignInAsync(user, false, false);
             }
 
             return this.RedirectToAction("Index", "Manage");
@@ -160,7 +160,7 @@ namespace bYteMe.Controllers
             var user = await this.UserManager.FindByIdAsync(this.User.Identity.GetUserId());
             if (user != null)
             {
-                await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                await this.SignInManager.SignInAsync(user, false, false);
             }
 
             return this.RedirectToAction("Index", "Manage");
@@ -198,7 +198,7 @@ namespace bYteMe.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            this.ModelState.AddModelError(string.Empty, "Failed to verify phone");
+            this.ModelState.AddModelError(string.Empty, "Грешка при валидирането на телефонен номер.");
             return this.View(model);
         }
 
@@ -216,7 +216,7 @@ namespace bYteMe.Controllers
             var user = await this.UserManager.FindByIdAsync(this.User.Identity.GetUserId());
             if (user != null)
             {
-                await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                await this.SignInManager.SignInAsync(user, false, false);
             }
 
             return this.RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
@@ -244,7 +244,7 @@ namespace bYteMe.Controllers
                 var user = await this.UserManager.FindByIdAsync(this.User.Identity.GetUserId());
                 if (user != null)
                 {
-                    await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await this.SignInManager.SignInAsync(user, false, false);
                 }
 
                 return this.RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
@@ -290,8 +290,8 @@ namespace bYteMe.Controllers
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
             this.ViewBag.StatusMessage =
-                message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
-                : message == ManageMessageId.Error ? "An error has occurred."
+                message == ManageMessageId.RemoveLoginSuccess ? "Входът е премахнат."
+                : message == ManageMessageId.Error ? "Възникна грешка."
                 : string.Empty;
             var user = await this.UserManager.FindByIdAsync(this.User.Identity.GetUserId());
             if (user == null)

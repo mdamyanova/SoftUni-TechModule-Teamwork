@@ -84,7 +84,7 @@ namespace bYteMe.Controllers
                 case SignInStatus.RequiresVerification:
                     return this.RedirectToAction("SendCode", new { ReturnUrl = returnUrl, model.RememberMe });
                 default:
-                    this.ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    this.ModelState.AddModelError(string.Empty, "Невалиден опит за вход.");
                     return this.View(model);
             }
         }
@@ -124,7 +124,7 @@ namespace bYteMe.Controllers
                 case SignInStatus.LockedOut:
                     return this.View("Lockout");
                 default:
-                    this.ModelState.AddModelError(string.Empty, "Invalid code.");
+                    this.ModelState.AddModelError(string.Empty, "Невалиден код.");
                     return this.View(model);
             }
         }
@@ -148,12 +148,12 @@ namespace bYteMe.Controllers
                 {
                     if (model.UserProfilePicture.ContentLength > (4 * 1024 * 1024))
                     {
-                        this.ModelState.AddModelError("CustomError", "Image can not be lager than 4MB.");
+                        this.ModelState.AddModelError("CustomError", "Изображението не може да е по-голямо от 4MB.");
                         return this.View();
                     }
                     if (!(model.UserProfilePicture.ContentType == "image/jpeg" || model.UserProfilePicture.ContentType == "image/gif"))
                     {
-                        this.ModelState.AddModelError("CustomError", "Image must be in jpeg or gif format.");
+                        this.ModelState.AddModelError("CustomError", "Изображението трябва да е в jpeg или gif формат.");
                     }
                 }
                 if (model.UserProfilePicture != null)
