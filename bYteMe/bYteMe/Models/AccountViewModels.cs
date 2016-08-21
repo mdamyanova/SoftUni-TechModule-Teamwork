@@ -113,6 +113,10 @@ namespace bYteMe.Models
         [Display(Name = "потребителско име")]
         public string UserName { get; set; }
 
+        [EmailAddress]
+        [Display(Name = "имейл")]
+        public string Email { get; set; }
+
         [Required]
         [StringLength(100, ErrorMessage = "{0} трябва да бъде най-малко {2} символа.", MinimumLength = 3)]
         [DataType(DataType.Password)]

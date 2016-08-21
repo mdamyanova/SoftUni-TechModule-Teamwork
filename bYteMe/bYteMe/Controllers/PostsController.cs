@@ -40,6 +40,7 @@ namespace bYteMe.Controllers
             return this.View();
         }
 
+        // TODO: Make when creating post to not asking for author id and post id and complete them automaticaly
         // POST: Posts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
