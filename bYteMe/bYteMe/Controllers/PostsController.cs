@@ -46,7 +46,7 @@ namespace bYteMe.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AuthorId,PostId,Title,Body")] Post post)
+        public ActionResult Create([Bind(Include = "PostId,Title,Body")] Post post)
         {
             if (this.ModelState.IsValid)
             {

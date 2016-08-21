@@ -6,6 +6,8 @@ namespace bYteMe
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    using bYteMe.Models;
+
     public partial class Post
     {
         public Post()
@@ -15,11 +17,10 @@ namespace bYteMe
 
         [Key]
         [Column(Order = 0)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int AuthorId { get; set; }
+        public string PostId { get; set; }
         
         [Column(Order = 1)]
-        public int PostId { get; set; }
+        public string AuthorId { get; set; }
 
         [Column(Order = 2)]
         [StringLength(200)]
@@ -30,5 +31,8 @@ namespace bYteMe
     
         [Column(Order = 4)]
         public DateTime Date { get; set; }
+
+        [ForeignKey("AuthorId")]
+        public User Author { get; set; }
     }
 }
