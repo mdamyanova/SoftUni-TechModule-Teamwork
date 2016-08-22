@@ -17,7 +17,7 @@ namespace bYteMe
 
         [Key]
         [Column(Order = 0)]
-        public string PostId { get; set; }
+        public int Id { get; set; }
         
         [Column(Order = 1)]
         public string AuthorId { get; set; }

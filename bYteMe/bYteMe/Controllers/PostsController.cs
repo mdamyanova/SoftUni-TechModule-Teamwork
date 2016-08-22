@@ -2,10 +2,15 @@
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-
+using Microsoft.AspNet.Identity;
 namespace bYteMe.Controllers
 {
+    using System.Web;
+
     using bYteMe.Models;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
 
     public class PostsController : Controller
     {
@@ -46,8 +51,12 @@ namespace bYteMe.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PostId,Title,Body")] Post post)
+        public ActionResult Create([Bind(Include = "Title,Body")] Post post)
         {
+            // get current logged user's id
+            User user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+            post.AuthorId = user.Id;
+
             if (this.ModelState.IsValid)
             {
                 this.db.Posts.Add(post);
