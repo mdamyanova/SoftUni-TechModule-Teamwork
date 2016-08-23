@@ -12,6 +12,7 @@ namespace bYteMe.Controllers
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
 
+    [Authorize]
     public class PostsController : Controller
     {
         private bYteMeDbContext db = new bYteMeDbContext();

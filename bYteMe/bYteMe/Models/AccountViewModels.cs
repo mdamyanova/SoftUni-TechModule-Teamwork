@@ -69,7 +69,7 @@ namespace bYteMe.Models
         [Display(Name = "парола")]
         public string Password { get; set; }
 
-        [Display(Name = "Запомняне?")]
+        [Display(Name = "запомняне")]
         public bool RememberMe { get; set; }
     }
 
