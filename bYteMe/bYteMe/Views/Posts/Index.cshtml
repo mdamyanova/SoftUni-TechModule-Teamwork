@@ -1,25 +1,49 @@
 ﻿@model IEnumerable<bYteMe.Post>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "публикации";
 }
-
-<h2>Index</h2>
+<meta charset="UTF-8">
+@*<h2>Index</h2>*@
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("нова публикация", "Create")
 </p>
+@* TODO: Edit table to not be hardcoded *@
 <table class="table">
     <tr>
+        <th>
+            заглавие
+            @*@Html.DisplayNameFor(model => model.Title)*@
+        </th>
+        <th>
+            съдържание
+            @*@Html.DisplayNameFor(model => model.Body)*@
+        </th>
+        <th>
+            дата
+            @*@Html.DisplayNameFor(model => model.Date)*@
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @{ string postTitle = item.Title.Length <= 30 ? item.Title : item.Title.Substring(0, 27) + "...";}
+            @postTitle
+        </td>
+        <td>
+            @{ string postBody = item.Body.Length <= 40 ? item.Body : item.Body.Substring(0, 37) + "...";}
+            @postBody
+        </td>
+        <td>
+           @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.ActionLink("редактиране", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("детайли", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("изтриване", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
     </tr>
 }
