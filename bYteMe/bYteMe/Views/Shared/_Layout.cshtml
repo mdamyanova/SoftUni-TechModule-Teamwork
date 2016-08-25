@@ -17,8 +17,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("bYte me", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <div class="float-left">
+                    <p class="site-title"><img src="../images/site-logo.jpg" alt="Site Logo" /></p>
+                </div>
+                @*@Html.ActionLink("bYte me", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
+           
             <div class="navbar-collapse collapse">
                 <!--here are navigation to our pages,
                     the action link requires text, action's name and controller name-->

@@ -236,6 +236,7 @@
     <Content Include="images\orders\beer.jpg" />
     <Content Include="images\orders\beers.jpg" />
     <Content Include="images\orders\rakia.jpg" />
+    <Content Include="images\site-logo.jpg" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />

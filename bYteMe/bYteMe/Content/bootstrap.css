@@ -136,7 +136,7 @@ sub {
 }
 
 img {
-  border: 0;
+  border: 0px;
 }
 
 svg:not(:root) {
