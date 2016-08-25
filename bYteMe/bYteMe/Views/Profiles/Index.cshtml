@@ -1,4 +1,7 @@
-﻿@model List<bYteMe.Models.User>
+﻿@using bYteMe.Models
+@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.Owin
+@model List<bYteMe.Models.User>
 @{
     ViewBag.Title = "профили";
 }
@@ -16,10 +19,21 @@
     <div class="listProfiles">
         <ul id="list">
             <li id="currentProfile">
-                <!--TODO: Add profile picture and hyperlink to names of user to go to their profile-->
+                <!--TODO: Resize profile photos, add read more for bio-->
                 <img id="orderImg" class="cut-out" src="@imgSrc" />
-                <span id="userName">@user.FullName (@user.UserName)</span>
-                <span id="likes">Likes: @user.Likes Dislikes: @user.Dislikes</span>
+                <span id="likes">Likes: @user.Likes Dislikes: @user.Dislikes</span>      
+                @{
+                    User currentUser = System.Web.HttpContext.Current.GetOwinContext()
+                    .GetUserManager<ApplicationUserManager>()
+                    .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+
+                    if (user.Id != currentUser.Id)
+                    {
+                        //TODO: Fix this 
+                        <div>Vote: </div>
+                        <input type="button" value="Go Somewhere Else" onclick=""/>
+                }
+                    }        
             </li>
         </ul>
     </div>

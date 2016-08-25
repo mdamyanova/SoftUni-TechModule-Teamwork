@@ -12,11 +12,17 @@
 <body>
     <div class="profile-info">
         @{
-            var base64 = Convert.ToBase64String(Model.ProfilePhoto);
-            var imgSrc = $"data:image/gif;base64,{base64}";
+            if (Model.ProfilePhoto != null)
+            {
+                var base64 = Convert.ToBase64String(Model.ProfilePhoto);
+                var imgSrc = $"data:image/gif;base64,{base64}";
+
+                <img id="profile-picture" class="cut-out" src="@imgSrc"/>
+            }
         }
-        <img id="profile-picture" class="cut-out" src="@imgSrc"/>
+       
         @* TODO: Show it like text box where current profile can edit their bio *@
+        <span id="userName">@Model.FullName (@Model.UserName)</span>
         <p id="profile-bio">@Model.Biography</p>
         @* TODO: List posts from current user *@
         <p id="profile-posts">Posts of current user</p>

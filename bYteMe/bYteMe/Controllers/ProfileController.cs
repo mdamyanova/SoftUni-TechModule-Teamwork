@@ -22,10 +22,5 @@
             // TODO: Get current user and show info for him
             return this.View(user);
         }
-
-        //public ActionResult ViewProfile()
-        //{
-        //    return this.View();
-        //}
     }
 }
