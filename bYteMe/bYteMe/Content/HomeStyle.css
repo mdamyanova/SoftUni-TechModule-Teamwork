@@ -1,9 +1,12 @@
-﻿@font-face { font-family: glyphicons-halflings-regular  ;src: url("\fonts\glyphicons-halflings-regular.ttf"); }
+﻿body {
+    background-image: url('../images/site-background.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: gray;
+}
 
-/*TODO: Change font-face and font-family, make different styles for title and subtitle and add appropriate background*/
-
+/*TODO: Style text*/
 .text {
-    font-family: glyphicons-halflings-regular;
     font-size: 40px;
     color: black;
     text-align: center;

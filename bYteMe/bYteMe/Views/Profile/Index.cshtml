@@ -24,9 +24,10 @@
         @* TODO: Show it like text box where current profile can edit their bio *@
         <span id="userName">@Model.FullName (@Model.UserName)</span>
         <p id="profile-bio">@Model.Biography</p>
+
         @* TODO: List posts from current user *@
-        <p id="profile-posts">Posts of current user</p>
-        <button id="profile-gallery">галерия</button>
+        <p id="profile-posts">публикации</p>
+        <input type="button" value="галерия" onclick="location.href='@Url.Action("Gallery", "Profile")'" />
         <p id="profile-likes">харесвания: @Model.Likes нехаресвания: @Model.Dislikes</p>
     </div>
 </body>

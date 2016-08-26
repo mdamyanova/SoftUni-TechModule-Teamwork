@@ -11,7 +11,7 @@ namespace bYteMe
         [Key]
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int AuthorId { get; set; }
+        public string AuthorId { get; set; }
 
         [Column(Order = 1)]
         public int PhotoId { get; set; }

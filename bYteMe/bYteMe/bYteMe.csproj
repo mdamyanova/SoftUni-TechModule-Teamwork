@@ -197,6 +197,8 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Constants\TextConstants.cs" />
+    <Compile Include="Constants\UserConstants.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -230,12 +232,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="images\background-hearts.jpg" />
     <Content Include="images\facebook.png" />
     <Content Include="images\orders\alcohol-roulette.jpg" />
     <Content Include="images\orders\beer.jpg" />
     <Content Include="images\orders\beers.jpg" />
     <Content Include="images\orders\rakia.jpg" />
+    <Content Include="images\site-background.jpg" />
     <Content Include="images\site-logo.jpg" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
@@ -297,6 +299,7 @@
     <Content Include="Views\Orders\Index.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Profile\Gallery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

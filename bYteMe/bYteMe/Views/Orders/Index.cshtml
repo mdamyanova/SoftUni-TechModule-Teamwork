@@ -1,32 +1,42 @@
-﻿@model System.Data.Entity.DbSet<bYteMe.Order>
-
+﻿@using bYteMe.Constants
+@model System.Data.Entity.DbSet<bYteMe.Order>
 @{
     ViewBag.Title = "поръчки";
 }
 
 <!DOCTYPE html>
 <html>
-<head>   
-    <link rel="Stylesheet" href="@Href("~/Content/OrdersStyle.css")" />  
+<head>
+    <link rel="Stylesheet" href="@Href("~/Content/OrdersStyle.css")"/>
     <title>поръчки</title>
 </head>
-    <body>
-        <div>
-              @foreach (var beer in Model)
-              {
-                  var base64 = Convert.ToBase64String(beer.Photo);
-                  var imgSrc = $"data:image/gif;base64,{base64}";
-                <div class="listProducts">
-                    <ul id="list">
-                        <li id="currentProduct">
-                            <img id="orderImg" class="cut-out" src="@imgSrc"/>
-                            <span id="orderDescription">@beer.Description</span>
-                            <span id="requiredDislikes">@beer.RequiredDislikes</span>                       
-                        </li>
-                   </ul>                  
-                    <button id="orderButton">Order Here</button>
-               </div>
-              }
+<body>
+<div>
+    @foreach (var beer in Model)
+    {
+        var base64 = Convert.ToBase64String(beer.Photo);
+        var imgSrc = $"data:image/gif;base64,{base64}";
+        <div class="listProducts">
+            <ul id="list">
+                <li id="currentProduct">
+                    <img id="orderImg" class="cut-out" src="@imgSrc"/>
+                    <span id="orderDescription">@beer.Description</span>
+                    <span id="requiredDislikes">@beer.RequiredDislikes</span>                       
+                </li>
+            </ul>
+            <button id="orderButton" onclick="validateOrder(beer.RequiredDislikes)">поръчай</button>
         </div>
-    </body>
+    }
+</div>
+</body>
 </html>
+
+@* Button *@
+<script>
+    function validateOrder(requiredDislikes) {
+        let userDislikes = '@UserConstants.CurrentUser.Dislikes';
+        if (requiredDislikes < userDislikes) {
+            //add error here
+        }
+    }
+</script>
