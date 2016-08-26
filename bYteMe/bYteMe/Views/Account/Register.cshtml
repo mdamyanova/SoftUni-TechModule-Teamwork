@@ -4,63 +4,84 @@
 }
 
 <h2>@ViewBag.Title</h2>
-
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>създай нов потребител</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.FullName, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Biography, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Biography, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.ProfilePhoto, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.UserProfilePicture, new { type = "file" })
-                @Html.ValidationMessage("CustomMessage")
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title</title>
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/Content/Login/Normalize.css">
+    <link rel="stylesheet" href="/Content/Login/LoginStyle.css">
+</head>
+<body>
+<div class="form">
+    <ul class="tab-group">
+        <li class="tab active"><a href="#signup">регистрация</a></li>
+        <li><a>вписване</a></li>
+    </ul>
+    <div class="tab-content">
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div id="signup">
+                <h1>регистрирай се безплатно (ще почерпиш една бира)</h1>
+                <form action="/" method="post">
+                    <div class="top-row">
+                        <div class="field-wrap">
+                            <label>
+                                потребителско име<span class="req">*</span>
+                            </label>
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "text-box", autocomplete = "off" })
+                        </div>
+                        <div class="field-wrap">
+                            <label>
+                                име и фамилия<span class="req">*</span>
+                            </label>
+                            @Html.TextBoxFor(m => m.FullName, new { @class = "text-box", autocomplete = "off" })
+                        </div>
+                    </div>
+                    <div class="field-wrap">
+                        <label>
+                            имейл<span class="req">*</span>
+                        </label>
+                        @Html.TextBoxFor(m => m.Email, new { @class = "text-box", autocomplete = "off" })
+                    </div>
+                    <div class="field-wrap">
+                        <label>
+                            биография<span class="req">*</span>
+                        </label>
+                        @Html.TextBoxFor(m => m.Biography, new { @class = "text-box", autocomplete = "off" })
+                    </div>
+                    <div class="field-wrap">
+                        <label>
+                            парола<span class="req">*</span>
+                        </label>
+                        @Html.PasswordFor(m => m.Password, new { @class = "text-box", autocomplete = "off" })
+                    </div>
+                    <div class="field-wrap">
+                        <label>
+                            повтори паролата<span class="req">*</span>
+                        </label>
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "text-box", autocomplete = "off" })
+                    </div>
+                    @*TODO: Style button for profile photo*@
+                    @*<label>
+                            профилна снимка<span class="req">*</span>
+                        </label>*@
+                        @Html.TextBoxFor(m => m.UserProfilePicture, new { @class = "button button-block", type = "file" })
+                        @Html.ValidationMessage("CustomMessage")
+                  
+                    <button type="submit" class="button button-block">регистрация</button>
+                </form>
             </div>
-        </div>
+        }
     </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="регистрация" />
-        </div>
-    </div>
-}
-
+</div>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="/Scripts/loginScript.js"></script>
+</body>
+</html>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
