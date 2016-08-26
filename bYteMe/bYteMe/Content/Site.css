@@ -27,3 +27,19 @@ textarea {
 .right-footer {
     float: right;
 }
+
+/*Override style to have colors we want*/
+.navbar {
+    background-color: white; 
+}
+
+.nav.navbar-nav li a {
+    color: black;
+ }
+
+.navbar-nav li a:hover {
+    outline: none;
+    outline-offset: 0;
+    text-decoration: none;
+    background: black;
+}

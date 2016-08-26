@@ -226,6 +226,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\HomeStyle.css" />
+    <Content Include="Content\Login\LoginStyle.css" />
+    <Content Include="Content\Login\Normalize.css" />
     <Content Include="Content\ProfilesStyle.css" />
     <Content Include="Content\OrdersStyle.css" />
     <Content Include="favicon.ico" />
@@ -254,6 +256,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\loginScript.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
