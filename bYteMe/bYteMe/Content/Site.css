@@ -30,16 +30,21 @@ textarea {
 
 /*Override style to have colors we want*/
 .navbar {
-    background-color: white; 
+    background-color: #13232f;
 }
 
 .nav.navbar-nav li a {
-    color: black;
+    color: #1ab188;
+    text-align: center;
+    font-weight: bold; 
+    margin: 0 auto; 
+    padding: 9px 18px 9px;
+    text-decoration: none;
  }
 
-.navbar-nav li a:hover {
-    outline: none;
-    outline-offset: 0;
-    text-decoration: none;
-    background: black;
+.navbar-nav li:hover {
+   background: #1ab188;
+   outline: none;
+   outline-offset: 0;
+   text-decoration: none;   
 }
