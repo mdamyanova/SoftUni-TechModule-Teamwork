@@ -23,12 +23,27 @@ textarea {
     max-width: 280px;
 }
 
+/*Override*/
+
 /*Social network footer*/
 .right-footer {
     float: right;
 }
 
-/*Override style to have colors we want*/
+.left-footer {
+    color: white;
+    text-shadow: #13232f 0px 0px 1px,  #13232f 0px 0px 1px,   #13232f 0px 0px 1px,
+            #13232f 0px 0px 1px,  #13232f 0px 0px 1px,  #13232f 0px 0px 1px;
+}
+header {
+position:fixed;
+text-align:center;
+margin:0;
+padding:0;
+width:100%; 
+height:150px;
+}
+
 .navbar {
     background-color: #13232f;
 }
@@ -48,3 +63,11 @@ textarea {
    outline-offset: 0;
    text-decoration: none;   
 }
+
+ footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem; 
+ }
