@@ -8,27 +8,33 @@
 <html>
 <head>
     <title>профил</title>
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="@Href("~/Content/ProfileStyle.css")"/>
 </head>
 <body>
-    <div class="profile-info">
+<div class="tab-content">
+<div class="profile-info">
+    <div class="field-wrap">
         @{
-            if (Model.ProfilePhoto != null)
-            {
-                var base64 = Convert.ToBase64String(Model.ProfilePhoto);
-                var imgSrc = $"data:image/gif;base64,{base64}";
-
-                <img id="profile-picture" class="cut-out" src="@imgSrc"/>
-            }
+            var imgSrc = Model.ProfilePhoto != null ? $"data:image/gif;base64,{Convert.ToBase64String(Model.ProfilePhoto)}" : "../images/default-profile-picture.jpg";
+            //var base64 = Convert.ToBase64String(Model.ProfilePhoto);
+            //var imgSrc = $"data:image/gif;base64,{base64}";
         }
-       
+
+        <img id="profile-picture" class="cut-out" src="@imgSrc"/>
+    </div>
+    <div class="field-wrap">
         @* TODO: Show it like text box where current profile can edit their bio *@
         <span id="userName">@Model.FullName (@Model.UserName)</span>
-        <p id="profile-bio">@Model.Biography</p>
-
-        @* TODO: List posts from current user *@
-        <p id="profile-posts">публикации</p>
-        <input type="button" value="галерия" onclick="location.href='@Url.Action("Gallery", "Profile")'" />
-        <p id="profile-likes">харесвания: @Model.Likes нехаресвания: @Model.Dislikes</p>
     </div>
+    <div class="field-wrap">
+    <p id="profile-bio">@Model.Biography</p>
+        </div>
+    @* TODO: List posts from current user *@
+    <p id="profile-posts">публикации</p>
+    <input type="button" value="галерия" onclick="location.href = '@Url.Action("Gallery", "Profile")'" />
+    <p id="profile-likes">харесвания: @Model.Likes нехаресвания: @Model.Dislikes</p>
+</div>
+</div>
 </body>
 </html>

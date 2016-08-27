@@ -7,11 +7,16 @@
     using bYteMe.Constants;
     using bYteMe.Models;
 
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+
     [Authorize]
     public class ProfileController : Controller
     {
         // get current user    
-        private readonly User user = UserConstants.CurrentUser;
+        private readonly User user = System.Web.HttpContext.Current.GetOwinContext()
+                .GetUserManager<ApplicationUserManager>()
+                .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
 
         public ActionResult Index()
         {                                       
