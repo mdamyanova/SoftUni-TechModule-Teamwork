@@ -1,4 +1,5 @@
 ﻿body {
+    font-family: 'Titillium Web', sans-serif;
     background-image: url('../images/site-background.jpg');
     background-repeat: no-repeat;
     background-position: center;
@@ -7,7 +8,7 @@
 
 /*TODO: Style text*/
 .text {   
-    color: #1ab188;
+    color: rgb(26, 177, 136);
     text-align: center;
     font-weight: bold;
     margin: 0 auto;
