@@ -13,14 +13,13 @@
         <dt>парола: </dt>
         <dd>
             [
-            @if (Model.HasPassword)
-            {
-                @Html.ActionLink("промяна на парола", "ChangePassword")
-            }
-            else
-            {
-                @Html.ActionLink("създай", "SetPassword")
-            }
+            @(Model.HasPassword ? Html.ActionLink("промяна на парола", "ChangePassword") : Html.ActionLink("създай", "SetPassword"))
+            ]
+        </dd>
+        <dt>профил: </dt>
+        <dd>
+            [
+            @Html.ActionLink("редактиране на профила", "EditProfile");
             ]
         </dd>
         @*<dt>External Logins:</dt>*@

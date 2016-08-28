@@ -12,11 +12,21 @@ using Microsoft.Owin.Security;
 
 namespace bYteMe.Controllers
 {
+    using System.Data.Entity;
+
     [Authorize]
     public class ManageController : Controller
     {
+        private readonly bYteMeDbContext db = new bYteMeDbContext();
+
+        readonly User currentUser = System.Web.HttpContext.Current.GetOwinContext()
+               .GetUserManager<ApplicationUserManager>()
+               .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+
         private ApplicationSignInManager _signInManager;
+
         private ApplicationUserManager _userManager;
+        
 
         public ManageController()
         {
@@ -331,6 +341,50 @@ namespace bYteMe.Controllers
             return result.Succeeded ? this.RedirectToAction("ManageLogins") : this.RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
 
+#region AddedMethods
+        public ActionResult EditProfile()
+        {
+            var user = this.db.Users.FirstOrDefault(u => u.UserName.Equals(this.currentUser.UserName));
+            var model = new ExtendedIdentityModels { UserName = user?.UserName, FullName = user?.FullName, Email = user?.Email, ProfilePhoto = user?.ProfilePhoto, Biography = user?.Biography};
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public ActionResult EditProfile(User editedUser)
+        {
+            // TODO: Find out why ModelState.IsValid is False
+            // if (ModelState.IsValid)
+            // {
+            var username =
+                System.Web.HttpContext.Current.GetOwinContext()
+                    .GetUserManager<ApplicationUserManager>()
+                    .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+
+            User user = this.db.Users.FirstOrDefault(u => u.UserName.Equals(this.currentUser.UserName));
+            var userNameExists = db.Users.Any(x => x.UserName == editedUser.UserName);
+            if (!userNameExists)
+            {
+                user.UserName = editedUser.UserName;
+            }
+
+            user.FullName = editedUser.FullName;
+            var emailExists = this.db.Users.Any(x => x.Email == editedUser.Email);
+            if (!emailExists)
+            {
+                user.Email = editedUser.Email;
+            }                    
+            user.ProfilePhoto = editedUser.ProfilePhoto;
+            user.Biography = editedUser.Biography;
+            this.db.Entry(user).State = EntityState.Modified;
+            this.db.SaveChanges();
+            return this.RedirectToAction("Index", "Home");
+
+            // }                    
+            // return this.View(editedUser);
+        }
+#endregion
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && this._userManager != null)
@@ -340,9 +394,9 @@ namespace bYteMe.Controllers
             }
 
             base.Dispose(disposing);
-        }
+        }      
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -393,6 +447,6 @@ namespace bYteMe.Controllers
             Error
         }
 
-#endregion
+#endregion    
     }
 }

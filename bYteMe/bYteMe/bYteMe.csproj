@@ -231,6 +231,8 @@
     <Content Include="Content\ProfilesStyle.css" />
     <Content Include="Content\OrdersStyle.css" />
     <Content Include="Content\ProfileStyle.css" />
+    <Content Include="Content\Register\RegisterStyle.css" />
+    <Content Include="Content\Register\Normalize.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -307,6 +309,7 @@
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Profile\Gallery.cshtml" />
     <Content Include="Views\Profile\Edit.cshtml" />
+    <Content Include="Views\Manage\EditProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

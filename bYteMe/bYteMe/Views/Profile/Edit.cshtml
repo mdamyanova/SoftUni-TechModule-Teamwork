@@ -13,14 +13,16 @@
     <link rel="stylesheet" href="@Href("~/Content/ProfileStyle.css")" />
 </head>
 <body>
-    @using (Html.BeginForm())
-    { @Html.AntiForgeryToken()
+    @using (Html.BeginForm("Result", "Profile"))
+    { 
+        @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div>
             <span>@Html.LabelFor(m => m.Biography)</span>
             <span>@Html.TextBoxFor(m => m.Biography)</span>
             @Html.ValidationMessageFor(m => m.Biography)
-            <span>@Html.ActionLink("промени", "Edit")</span>
+            <button>промени</button>
+          
         </div>
     }
 </body>

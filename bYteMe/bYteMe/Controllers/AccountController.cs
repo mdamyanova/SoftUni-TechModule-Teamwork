@@ -142,6 +142,7 @@ namespace bYteMe.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(ExtendedIdentityModels model)
         {
+            bYteMeDbContext db = new bYteMeDbContext();
             if (this.ModelState.IsValid)
             {
                 if (model.UserProfilePicture != null)
@@ -156,10 +157,21 @@ namespace bYteMe.Controllers
                         this.ModelState.AddModelError("CustomError", "Изображението трябва да е в jpeg или gif формат.");
                     }
                 }
+
                 if (model.UserProfilePicture != null)
                 {
                     byte[] data = new byte[model.UserProfilePicture.ContentLength];
                     model.UserProfilePicture.InputStream.Read(data, 0, model.UserProfilePicture.ContentLength);
+                    if (db.Users.Any(u => u.UserName == model.UserName))
+                    {
+                     this.ModelState.AddModelError("CustomError", "вече има пич с такова потребителско име");   
+                     
+                    }
+                    if (db.Users.Any(u => u.Email == model.Email))
+                    {
+                        this.ModelState.AddModelError("CustomError", "Брат избери друго име");
+
+                    }
                     var user = new User()
                                    {
                                        UserName = model.UserName,
@@ -178,6 +190,7 @@ namespace bYteMe.Controllers
                     }
                     this.AddErrors(result);
                 }
+                
             }
             // If we got this far, something failed, redisplay form
             return this.View(model);

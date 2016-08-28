@@ -56,7 +56,7 @@ namespace bYteMe.Models
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "повтвърдете новата парола")]
+        [Display(Name = "потвърдете новата парола")]
         [Compare("NewPassword", ErrorMessage = "Паролите не съвпадат.")]
         public string ConfirmPassword { get; set; }
     }

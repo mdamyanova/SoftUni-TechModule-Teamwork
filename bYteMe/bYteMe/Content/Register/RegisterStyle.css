@@ -149,8 +149,9 @@ textarea {
   margin: 0;
 }
 
-.login-button {
+.register-button {
   list-style: none;
+  padding: 0;
   margin: 0 auto;
   content: "";
   display: table;
@@ -169,12 +170,7 @@ textarea {
   transition: .5s ease;
 }
 
-.login-button:hover {
+.register-button:hover {
     background: #179b77;
     color: #ffffff;
-}
-
-.forgot {
-  margin-top: -20px;
-  text-align: right;
 }

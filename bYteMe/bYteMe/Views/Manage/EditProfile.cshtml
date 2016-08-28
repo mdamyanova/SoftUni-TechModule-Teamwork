@@ -1,0 +1,23 @@
+﻿@model bYteMe.Models.ExtendedIdentityModels
+@{
+    ViewBag.Title = "редактиране на профила";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("EditProfile", "Manage"))
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+    @Html.TextBoxFor(m => m.UserProfilePicture, new { @class = "button button_block", type = "file" })
+    @Html.ValidationMessage("CustomMessage")
+    @Html.TextBoxFor(m => m.Biography, new { @class = "form-control" })
+            <input type="submit" value="редактиране" class="btn btn-default" />
+
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
