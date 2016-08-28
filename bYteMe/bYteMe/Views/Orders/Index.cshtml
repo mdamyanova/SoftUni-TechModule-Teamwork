@@ -12,7 +12,6 @@
 <head>
     <title>поръчки</title>
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="@Href("~/Content/Site.css")"/>
     <link rel="Stylesheet" href="@Href("~/Content/OrdersStyle.css")"/>
 </head>
 <body>
@@ -24,12 +23,25 @@
         <div class="listProducts">
             <ul id="list">
                 <li id="currentProduct">
-                    <img id="orderImg" class="cut-out" src="@imgSrc"/>
+                    <img id="orderImg" class="cut-out" src="@imgSrc" />
                     <span id="orderDescription">@beer.Description</span>
-                    <span id="requiredDislikes">@beer.RequiredDislikes</span>                       
+                    <br/>
+                    <span id="requiredDislikes">Нужни нехаресвания: @beer.RequiredDislikes</span>
                 </li>
+
+                @{ User user = System.Web.HttpContext.Current.GetOwinContext()
+                                         .GetUserManager<ApplicationUserManager>()
+                                         .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+                    if (user.Dislikes < beer.RequiredDislikes)
+                    {
+                        <button id="orderButton-active">поръчай</button>
+                    }
+                    else
+                    {
+                        <button id="orderButton" disabled>поръчай</button>
+                    }
+                }
             </ul>
-            <button id="orderButton" onclick="validateOrder(beer.RequiredDislikes)">поръчай</button>
         </div>
     }
 </div>
@@ -37,14 +49,4 @@
 </html>
 
 @* Button *@
-@{ User user = System.Web.HttpContext.Current.GetOwinContext()
-                          .GetUserManager<ApplicationUserManager>()
-                          .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());}
-<script>
-    function validateOrder(requiredDislikes) {
-        let userDislikes = '@user';
-        if (requiredDislikes < userDislikes) {
-            //add error here
-        }
-    }
-</script>
+

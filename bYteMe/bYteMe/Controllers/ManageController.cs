@@ -356,10 +356,6 @@ namespace bYteMe.Controllers
             // TODO: Find out why ModelState.IsValid is False
             // if (ModelState.IsValid)
             // {
-            var username =
-                System.Web.HttpContext.Current.GetOwinContext()
-                    .GetUserManager<ApplicationUserManager>()
-                    .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
 
             User user = this.db.Users.FirstOrDefault(u => u.UserName.Equals(this.currentUser.UserName));
             var userNameExists = db.Users.Any(x => x.UserName == editedUser.UserName);
@@ -383,7 +379,24 @@ namespace bYteMe.Controllers
             // }                    
             // return this.View(editedUser);
         }
-#endregion
+
+
+        //TODO: Make it work
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            while (this.db.Posts.Any(p => p.AuthorId == this.currentUser.Id))
+            {
+                var post = this.db.Posts.FirstOrDefault(p => p.AuthorId == this.currentUser.Id);
+                this.db.Posts.Remove(post);
+            }
+
+            this.db.Users.Remove(this.currentUser);
+            this.db.SaveChanges();
+            return this.RedirectToAction("Index");
+        }
+        #endregion
 
         protected override void Dispose(bool disposing)
         {

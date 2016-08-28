@@ -149,12 +149,12 @@ namespace bYteMe.Controllers
                 {
                     if (model.UserProfilePicture.ContentLength > (4 * 1024 * 1024))
                     {
-                        this.ModelState.AddModelError("CustomError", "Изображението не може да е по-голямо от 4MB.");
+                        this.ModelState.AddModelError("", "Изображението не може да е по-голямо от 4MB.");
                         return this.View();
                     }
                     if (!(model.UserProfilePicture.ContentType == "image/jpeg" || model.UserProfilePicture.ContentType == "image/gif"))
                     {
-                        this.ModelState.AddModelError("CustomError", "Изображението трябва да е в jpeg или gif формат.");
+                        this.ModelState.AddModelError("", "Изображението трябва да е в jpeg или gif формат.");
                     }
                 }
 
@@ -164,12 +164,12 @@ namespace bYteMe.Controllers
                     model.UserProfilePicture.InputStream.Read(data, 0, model.UserProfilePicture.ContentLength);
                     if (db.Users.Any(u => u.UserName == model.UserName))
                     {
-                     this.ModelState.AddModelError("CustomError", "вече има пич с такова потребителско име");   
+                     this.ModelState.AddModelError("", "вече има пич с такова потребителско име");   
                      
                     }
                     if (db.Users.Any(u => u.Email == model.Email))
                     {
-                        this.ModelState.AddModelError("CustomError", "Брат избери друго име");
+                        this.ModelState.AddModelError("", "зает е имейла");
 
                     }
                     var user = new User()

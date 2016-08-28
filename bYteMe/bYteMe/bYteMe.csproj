@@ -310,6 +310,7 @@
     <Content Include="Views\Profile\Gallery.cshtml" />
     <Content Include="Views\Profile\Edit.cshtml" />
     <Content Include="Views\Manage\EditProfile.cshtml" />
+    <Content Include="Views\Manage\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

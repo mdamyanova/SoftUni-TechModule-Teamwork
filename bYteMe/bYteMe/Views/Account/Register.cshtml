@@ -1,4 +1,5 @@
-﻿@model bYteMe.Models.ExtendedIdentityModels
+﻿@using System.Web.UI.WebControls
+@model bYteMe.Models.ExtendedIdentityModels
 @{
     ViewBag.Title = "регистрация";
 }
@@ -69,8 +70,7 @@
                     @*<label>
                         профилна снимка<span class="req">*</span>
                     </label>*@
-                    @Html.TextBoxFor(m => m.UserProfilePicture, new { @class = "choose-file-button", type = "file" })
-                    @Html.ValidationMessage("CustomMessage")
+                    @Html.TextBoxFor(m => m.UserProfilePicture, new { @class = "choose-file-button", type = "file" })                  
                 </div>
                 <button class="register-button">регистрация</button>
                 </form>

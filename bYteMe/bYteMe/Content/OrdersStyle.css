@@ -1,19 +1,62 @@
-﻿body {
-    padding: 110px;
-    background-color: blanchedalmond;
+﻿html {
+  overflow-y: scroll;
 }
 
-#orderButton {
-    float: right;
+body {
+  padding: 120px;
+  background: #c1bdba;
+  font-family: 'Tahoma', sans-serif;
 }
 
+#orderButton-active {
+  list-style: none;
+  margin: 0 auto;
+  content: "";
+  display: table;
+  clear: both;
+  display: block;
+  text-decoration: none;
+  padding: 1px;
+  background: rgba(160, 179, 176, 0.25);
+  color: #a0b3b0;
+  font-size: 20px;
+  float:right;
+  width: 30%;
+  text-align: center;
+  cursor: pointer;
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
+}
+
+#orderButton-active:hover {
+    background: #179b77;
+    color: #ffffff;
+}
+#orderButton:disabled {
+  list-style: none;
+  margin: 0 auto;
+  content: "";
+  display: table;
+  clear: both;
+  text-decoration: none;
+  padding: 1px;
+  background: rgba(160, 179, 176, 0.25);
+  color: #a0b3b0;
+  font-size: 20px;
+  float:right;
+  width: 30%;
+  text-align: center;
+  cursor: pointer;
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
+}
 .listProducts {
   margin: 20px;
 }
  
 #list {
   list-style-type: none;
-  width: 500px;
+  width: 900px;
 }
  
 #orderImg {
@@ -24,19 +67,30 @@
 }
  
 #currentProduct {
-  font: 200 12px/1.5 Georgia, Times New Roman, serif;
-}
- 
-#currentProduct {
   padding: 10px;
   overflow: auto;
 }
  
 #currentProduct:hover{
-  background: #eee;
-  cursor: pointer;
+  background: #179b77;
+  color: #ffffff;
 }
 
 #requiredDislikes {
-    float: right;
+  float: right;
+}
+
+.listProducts {
+  background: #13232f;
+  padding: 20px;
+  max-width: 1000px;
+  margin: 40px auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+  overflow: auto;
+}
+
+span {
+    display: block;
+    color: white;
 }

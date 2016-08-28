@@ -1,0 +1,23 @@
+﻿@model bYteMe.Models.User
+
+@{
+    ViewBag.Title = "изтриване на профил";
+}
+
+<h2>изтриване</h2>
+
+<h3>Сигурен ли си, че искаш да си изтриеш профила?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal"></dl>
+
+    @using (Html.BeginForm("DeleteConfirmed", "Manage"))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="трий" class="btn btn-default" /> |
+            @Html.ActionLink("назад към настройки", "Index")
+        </div>
+    }
+</div>

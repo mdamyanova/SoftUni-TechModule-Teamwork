@@ -16,13 +16,13 @@
 <body>
 @foreach (var user in Model)
 {
-    var base64 = Convert.ToBase64String(user.ProfilePhoto);
-    var imgSrc = $"data:image/gif;base64,{base64}";
     <div class="listProfiles">
         <ul id="list">
             <li id="currentProfile">
-                <!--TODO: Resize profile photos, add read more for bio-->
-                <img id="orderImg" class="cut-out" src="@imgSrc" />
+                    @{
+                        var imgSrc = user.ProfilePhoto != null ? $"data:image/gif;base64,{Convert.ToBase64String(user.ProfilePhoto)}" : "../images/default-profile-picture.jpg";
+                    }              
+                <img id="profile-picture" class="cut-out" src="@imgSrc" />              
                 <span id="likes">Likes: @user.Likes Dislikes: @user.Dislikes</span>      
                 @{
                     User currentUser = System.Web.HttpContext.Current.GetOwinContext()

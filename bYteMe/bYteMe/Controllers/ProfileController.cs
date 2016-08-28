@@ -32,13 +32,5 @@
             var photos = this.db.Photos.Where(p => p.AuthorId == this.user.Id).ToList();
             return this.View(photos);
         }
-     
-        public ActionResult Edit(FormCollection form)
-        {          
-            // TODO: Find a way to edit/add biography
-            return this.View();
-        }
-
-       
     }
 }
