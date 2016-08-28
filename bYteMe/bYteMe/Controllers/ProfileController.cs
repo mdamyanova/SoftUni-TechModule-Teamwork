@@ -1,5 +1,6 @@
 ﻿namespace bYteMe.Controllers
 {
+    using System.Data.Entity;
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
@@ -14,20 +15,28 @@
     public class ProfileController : Controller
     {
         // get current user    
-        private readonly User user = System.Web.HttpContext.Current.GetOwinContext()
+        private readonly User user =
+            System.Web.HttpContext.Current.GetOwinContext()
                 .GetUserManager<ApplicationUserManager>()
                 .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
 
+        readonly bYteMeDbContext db = new bYteMeDbContext();
+
         public ActionResult Index()
-        {                                       
+        {
             return this.View(this.user);
         }
 
         public ActionResult Gallery()
         {
-            var db = new bYteMeDbContext();
-            var photos = db.Photos.Where(p => p.AuthorId == this.user.Id).ToList();
+            var photos = this.db.Photos.Where(p => p.AuthorId == this.user.Id).ToList();
             return this.View(photos);
+        }
+     
+        public ActionResult Edit()
+        {          
+            // TODO: Find a way to edit/add biography
+            return this.View();
         }
     }
 }

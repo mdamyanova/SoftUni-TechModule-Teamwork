@@ -306,6 +306,7 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Profile\Gallery.cshtml" />
+    <Content Include="Views\Profile\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -12,9 +12,8 @@
     <link rel="stylesheet" href="@Href("~/Content/ProfileStyle.css")"/>
 </head>
 <body>
-<div class="tab-content">
 <div class="profile-info">
-    <div class="field-wrap">
+    <div class="image">
         @{
             var imgSrc = Model.ProfilePhoto != null ? $"data:image/gif;base64,{Convert.ToBase64String(Model.ProfilePhoto)}" : "../images/default-profile-picture.jpg";
             //var base64 = Convert.ToBase64String(Model.ProfilePhoto);
@@ -23,18 +22,19 @@
 
         <img id="profile-picture" class="cut-out" src="@imgSrc"/>
     </div>
-    <div class="field-wrap">
-        @* TODO: Show it like text box where current profile can edit their bio *@
-        <span id="userName">@Model.FullName (@Model.UserName)</span>
+    <div class="full-name">
+        <span id="fullName">Име: @Model.FullName</span>
+        <span id="userName">Потребителско име: @Model.UserName</span>
     </div>
-    <div class="field-wrap">
-    <p id="profile-bio">@Model.Biography</p>
-        </div>
+    <div class="biography">
+        <p id="profile-bio">Биография: <br/> @Model.Biography</p>
+    </div>
     @* TODO: List posts from current user *@
-    <p id="profile-posts">публикации</p>
-    <input type="button" value="галерия" onclick="location.href = '@Url.Action("Gallery", "Profile")'" />
+    <div class="posts">
+        публикации
+    </div>
+    <input type="button" class="gallery-button" value="галерия" onclick="location.href = '@Url.Action("Gallery", "Profile")'" />
     <p id="profile-likes">харесвания: @Model.Likes нехаресвания: @Model.Dislikes</p>
-</div>
 </div>
 </body>
 </html>
