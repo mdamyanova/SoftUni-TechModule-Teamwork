@@ -222,6 +222,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AboutStyle.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\HomeStyle.css" />
@@ -234,6 +235,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\aboutus-photo.jpg" />
     <Content Include="images\default-profile-picture.jpg" />
     <Content Include="images\facebook.png" />
     <Content Include="images\logo.jpg" />

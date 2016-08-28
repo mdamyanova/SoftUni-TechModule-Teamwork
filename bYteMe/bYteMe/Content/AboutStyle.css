@@ -1,0 +1,28 @@
+﻿html {
+  overflow-y: scroll;
+}
+
+body {
+  padding: 60px;
+  background: #c1bdba;
+  font-family: 'Tahoma', sans-serif;
+}
+
+.information {
+  background: #13232f;
+  padding: 40px;
+  max-width: 1000px;
+  margin: 40px auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+  overflow: auto;
+}
+
+.image {
+    float: right;
+    margin: 5px 5px 15px 20px;
+}
+
+p {
+    color: white;
+}

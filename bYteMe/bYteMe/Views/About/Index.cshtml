@@ -1,12 +1,45 @@
 ﻿@{
     ViewBag.Title = "за нас";
 }
-    <h2>@ViewBag.Title</h2>
-<div>
-    <span>@ViewBag.DescriptionText</span> 
-    <img id="orderImg" class="cut-out" src="~/images/" />
-    <p>Отбор Rakija: </p>
-    <span><a href="https://facebook.com/profile.php?id=1729844621">Иван Иванов</a></span>,
-    <span><a href="https://facebook.com/mirela95">Мирела Дамянова</a></span>,
-    <span><a href="https://facebook.com/tomislav.tashev">Томислав Ташев</a></span>
-</div>
+<h2>@ViewBag.Title</h2>
+<!DOCTYPE html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="@Href("~/Content/AboutStyle.css")"/>
+</head>
+<body>
+    <div class="information">
+        <div class="image">
+            <img id="orderImg" class="cut-out" src="/images/aboutus-photo.jpg" />
+        </div>
+        <div class="description">
+            <p>@ViewBag.DescriptionText</p>
+        </div>
+        <div class="contact-us">
+            <br/>
+            <p>
+                Отбор Rakija:
+                <span><a href="https://facebook.com/profile.php?id=1729844621">Иван Иванов</a></span>,
+                <span><a href="https://facebook.com/mirela95">Мирела Дамянова</a></span>,
+                <span><a href="https://facebook.com/tomislav.tashev">Томислав Ташев</a></span>
+            </p>
+        </div>
+    </div>
+</body>
+@*TODO: If have time - to do comment section*@
+@* <form method='post'>
+      NAME: <input type='text' name='name' id='name' /><br />
+
+      Email: <input type='text' name='email' id='email' /><br />
+
+      Website: <input type='text' name='website' id='website' /><br />
+
+      Comment:<br />
+      <textarea name='comment' id='comment'></textarea><br />
+
+      <input type='hidden' name='articleid' id='articleid' value='<? echo $_GET["id"]; ?>' />
+
+      <input type='submit' value='Submit' />
+    </form>
+*@

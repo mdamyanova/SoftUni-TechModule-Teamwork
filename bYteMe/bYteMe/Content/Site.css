@@ -65,7 +65,7 @@ height:150px;
 }
 
  footer {
-  position: absolute;
+  position: static;
   right: 0;
   bottom: 0;
   left: 0;
