@@ -14,43 +14,53 @@
     <link rel="stylesheet" href="@Href("~/Content/ProfileStyle.css")"/>
 </head>
 <body>
-<div class="profile-info">
-    <div class="image">
-        @{
-            var imgSrc = Model.ProfilePhoto != null ? $"data:image/gif;base64,{Convert.ToBase64String(Model.ProfilePhoto)}" : "../images/default-profile-picture.jpg";
-        }
-
-        <img id="profile-picture" class="cut-out" src="@imgSrc"/>
-    </div>
-    <div class="full-name">
-        <div id="fullName"><label>име:</label><p class="field">@Model.FullName</p></div>
-        <div id="userName"><label>потребителско име:</label><p class="field">@Model.UserName</p></div>
-    </div>
-    <div class="biography">
-        <label>биография:</label>
-        <p class="field">@Model.Biography</p>
-    </div>
-    @* TODO: List posts from current user *@
-    <div class="posts">
-        <label>публикации:</label>
-        @{
-            bYteMeDbContext db = new bYteMeDbContext();
-            var posts = db.Posts.Select(u => u).Where(p => p.AuthorId == Model.Id);
-            foreach (var post in posts)
-            {
-                <div class="field">
-                    <p>@post.Title</p>
-                </div>
+    <div class="profile-info">
+        <div class="image">
+            @{
+                var imgSrc = Model.ProfilePhoto != null ? $"data:image/gif;base64,{Convert.ToBase64String(Model.ProfilePhoto)}" : "../images/default-profile-picture.jpg";
             }
-        }
-    </div>
-    <input type="button" class="gallery-button" value="галерия" onclick="location.href = '@Url.Action("Gallery", "Profile")'"/>
-    <div class="profile-likes">
-        <div class="likes-count"><label>харесвания:</label>
-            <p class="like-field">@Model.Likes</p><label>нехаресвания:</label>
-            <p class="like-field">@Model.Dislikes</p>
+
+            <img id="profile-picture" class="cut-out" src="@imgSrc" />
         </div>
-    </div>
-    </div>
+        <div class="text">
+            <div class="full-name">
+                <div id="fullName"><label>име:</label>
+                    <p class="field">@Model.FullName</p>
+                </div>
+                <div id="userName"><label>потребителско име:</label>
+                    <p class="field">@Model.UserName</p>
+                </div>
+            </div>
+            <div class="biography">
+                <label>биография:</label>
+                <p class="field">@Model.Biography</p>
+            </div>
+            @* TODO: List posts from current user *@
+            <div class="posts">               
+                @{
+                    bYteMeDbContext db = new bYteMeDbContext();
+                    var posts = db.Posts.Select(u => u).Where(p => p.AuthorId == Model.Id);
+                    if (posts.Any())
+                    {
+                        <label>публикации:</label>
+                        foreach (var post in posts)
+                        {
+                            <div class="field">
+                                <p>@post.Title</p>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+            <input type="button" class="gallery-button" value="галерия" onclick="location.href = '@Url.Action("Gallery", "Profile")'"/>
+        </div>
+         <div class="profile-likes">
+            <div class="likes-count">
+                <label>харесвания:</label>
+                <p class="like-field">@Model.Likes</p><label>нехаресвания:</label>
+                <p class="like-field">@Model.Dislikes</p>
+            </div>
+        </div>
+        </div>
 </body>
 </html>

@@ -8,21 +8,21 @@
     <meta charset="UTF-8">
     <title>@ViewBag.Title</title>
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/Content/Manage/Normalize.css">
+    <link rel="stylesheet" href="/Content/Normalize.css">
     <link rel="stylesheet" href="/Content/Manage/ManageFormsStyle.css">
 </head>
 <body>
     <div class="form">
         <ul class="tab-group">
             <li class="tab" onclick="location.pathname=''">@Html.ActionLink("назад", "")</li>
-            <li class="tab active"><a href="#signup">редактиране на профил</a></li>
+            <li class="tab active"><a>редактиране</a></li>
         </ul>
         <div class="tab-content">
             @using (Html.BeginForm("EditProfile", "Manage", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div id="signup">           
+                <div id="edit">           
                     <form action="/" method="post">
                         <div class="top-row">
                             <div class="field-wrap">
@@ -37,7 +37,7 @@
                             @Html.TextBoxFor(m => m.Email, new { @class = "text-box", autocomplete = "off" })
                         </div>
                         <div class="field-wrap">
-                            @Html.TextBoxFor(m => m.Biography, new { @class = "text-box", autocomplete = "off" })
+                            @Html.TextAreaFor(m => m.Biography, new { @class = "text-box", autocomplete = "off" })
                         </div>                      
                         <div class="field-wrap">
                             @*<label>

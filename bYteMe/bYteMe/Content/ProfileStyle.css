@@ -19,8 +19,13 @@ body {
 }
 
 .image {
+    /*width: 200px;*/
     float: left;
     margin: 5px 99px 30px 10px;
+}
+
+.text {
+    /*margin-left: 400px;*/
 }
 
 p {

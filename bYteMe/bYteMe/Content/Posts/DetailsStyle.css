@@ -1,0 +1,52 @@
+﻿html {
+    overflow-y: scroll;
+}
+
+body {
+    padding: 60px;
+    background: #c1bdba;
+    font-family: 'Tahoma', sans-serif;
+}
+
+.information {
+    background: #13232f;
+    padding: 40px;
+    max-width: 1000px;
+    margin: 40px auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+    overflow: auto;
+}
+
+p {
+    color: white;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.author-date {
+    font-style: italic;
+}
+
+.action-link {
+    color: #1ab188;
+}
+.action-link:active {
+    color: #1ab188;
+}
+.action-link:hover {
+    color: white;
+}
+.action-link:visited {
+    color: #1ab188;
+}
+
+.footer {
+    position: static;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+}

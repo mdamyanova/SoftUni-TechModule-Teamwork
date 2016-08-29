@@ -1,4 +1,7 @@
-﻿@model bYteMe.Post
+﻿@using bYteMe.Models
+@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.Owin
+@model bYteMe.Post
 
 @{
     ViewBag.Title = "нова публикация";
@@ -30,8 +33,11 @@
                 @Html.ValidationMessageFor(model => model.PostId, "", new { @class = "text-danger" })
             </div>
         </div>*@
-
-        @*TODO: Find a way to translate to bulgarian the labels*@
+        <div class="form-group">
+          
+            <div class="col-md-10">
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

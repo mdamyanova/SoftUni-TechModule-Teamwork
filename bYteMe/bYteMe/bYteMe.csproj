@@ -230,7 +230,9 @@
     <Content Include="Content\Login\Normalize.css" />
     <Content Include="Content\Manage\ManageFormsStyle.css" />
     <Content Include="Content\Manage\ManageStyle.css" />
-    <Content Include="Content\Manage\Normalize.css" />
+    <Content Include="Content\Normalize.css" />
+    <Content Include="Content\Posts\DetailsStyle.css" />
+    <Content Include="Content\Posts\PostsFormsStyle.css" />
     <Content Include="Content\Posts\PostsStyle.css" />
     <Content Include="Content\ProfilesStyle.css" />
     <Content Include="Content\OrdersStyle.css" />

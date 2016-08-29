@@ -4,7 +4,75 @@
 
 body {
     padding: 120px;
+     background: #c1bdba;
     font-family: 'Tahoma', sans-serif;
+}
+
+table {
+    background: #13232f;
+    padding: 20px;
+    max-width: 1000px;
+    margin: 40px auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+    overflow: auto;
+}
+
+th {
+    background: #179b77;
+     color: #ffffff; 
+      font-weight: bold;
+      text-shadow: 2px 2px 5px #13232f, 0 0 25px #13232f, 0 0 5px #13232f;
+    cursor: pointer;
+}
+
+
+.post {
+    color: white;
+}
+.post:hover {
+     background: #179b77;
+     color: #ffffff;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px #13232f, 0 0 25px #13232f, 0 0 5px #13232f;
+}
+
+.create-post-button {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    content: "";
+    display: table;
+    clear: both;
+    display: block;
+    text-decoration: none;
+    padding: 1px;
+    background: rgba(160, 179, 176, 0.25);
+    color: #a0b3b0;
+    font-size: 20px;
+    float: right;
+    width: 20%;
+    text-align: center;
+    cursor: pointer;
+    -webkit-transition: .5s ease;
+    transition: .5s ease;
+}
+    .create-post-button:hover {
+        background: #179b77;
+        color: #ffffff;
+    }
+
+.action-link {
+    color: #1ab188;
+}
+.action-link:active {
+    color: #1ab188;
+}
+.action-link:hover {
+    color: white;
+}
+.action-link:visited {
+    color: #1ab188;
 }
 
 footer {

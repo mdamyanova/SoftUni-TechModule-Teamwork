@@ -15,7 +15,7 @@
     <p class="text-success">@ViewBag.StatusMessage</p>
     <div>
         <dl class="dl-horizontal">
-            <h4>променете настройките на профила си</h4>
+            <h4>променете настройки на профила</h4>
             <dt>парола: </dt>
             <dd>
                 [@(Model.HasPassword ? Html.ActionLink("промяна на парола", "ChangePassword", null, new { @class = "action-link" }) : Html.ActionLink("създай", "SetPassword", null, new { @class = "action-link" }))]

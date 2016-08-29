@@ -15,7 +15,7 @@ namespace bYteMe.Controllers
     [Authorize]
     public class PostsController : Controller
     {
-        private bYteMeDbContext db = new bYteMeDbContext();
+        private readonly bYteMeDbContext db = new bYteMeDbContext();
 
         // GET: Posts
         public ActionResult Index()
@@ -90,7 +90,7 @@ namespace bYteMe.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AuthorId,PostId,Title,Body")] Post post)
+        public ActionResult Edit([Bind(Include = "AuthorId,Id,Title,Body")] Post post)
         {
             if (this.ModelState.IsValid)
             {

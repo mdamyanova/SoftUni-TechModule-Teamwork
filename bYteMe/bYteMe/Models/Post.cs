@@ -5,14 +5,25 @@ namespace bYteMe
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Security;
 
     using bYteMe.Models;
 
+    using Microsoft.Ajax.Utilities;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+
+    using Context = System.Runtime.Remoting.Contexts.Context;
+
     public partial class Post
-    {
+    {      
         public Post()
         {
             this.Date = DateTime.Now;
+            //this.AuthorId = this.Author.Id;
+            //this.Author = this.currentUser;
         }
 
         [Key]
@@ -31,8 +42,5 @@ namespace bYteMe
     
         [Column(Order = 4)]
         public DateTime Date { get; set; }
-
-        [ForeignKey("AuthorId")]
-        public User Author { get; set; }
     }
 }

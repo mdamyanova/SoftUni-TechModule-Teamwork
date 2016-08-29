@@ -358,18 +358,18 @@ namespace bYteMe.Controllers
             // {
 
             User user = this.db.Users.FirstOrDefault(u => u.UserName.Equals(this.currentUser.UserName));
-            if (db.Users.Any(u => u.UserName == editedUser.UserName))
+            if (this.db.Users.Any(u => u.UserName == editedUser.UserName))
             {
                 this.ModelState.AddModelError("", "вече има пич с такова потребителско име");
 
             }
-            if (db.Users.Any(u => u.Email == editedUser.Email))
+            if (this.db.Users.Any(u => u.Email == editedUser.Email))
             {
                 this.ModelState.AddModelError("", "зает е имейла");
 
             }
 
-            var userNameExists = db.Users.Any(x => x.UserName == editedUser.UserName);
+            var userNameExists = this.db.Users.Any(x => x.UserName == editedUser.UserName);
             if (!userNameExists)
             {
                 user.UserName = editedUser.UserName;

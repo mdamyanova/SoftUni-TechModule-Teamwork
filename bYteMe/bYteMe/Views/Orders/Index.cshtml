@@ -21,32 +21,28 @@
         var base64 = Convert.ToBase64String(beer.Photo);
         var imgSrc = $"data:image/gif;base64,{base64}";
         <div class="listProducts">
-            <ul id="list">
-                <li id="currentProduct">
-                    <img id="orderImg" class="cut-out" src="@imgSrc" />
-                    <span id="orderDescription">@beer.Description</span>
-                    <br/>
-                    <span id="requiredDislikes">Нужни нехаресвания: @beer.RequiredDislikes</span>
-                </li>
-
+        <ul id="list">
+            <li id="currentProduct">
+                <img id="orderImg" class="cut-out" src="@imgSrc"/>
+                <span id="orderDescription">@beer.Description</span>
+                <br/>
+                <span id="requiredDislikes">Нужни нехаресвания: @beer.RequiredDislikes</span>
+            </li>
+        </ul>
                 @{ User user = System.Web.HttpContext.Current.GetOwinContext()
                                          .GetUserManager<ApplicationUserManager>()
                                          .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
                     if (user.Dislikes < beer.RequiredDislikes)
                     {
-                        <button id="orderButton-active">поръчай</button>
+                        <button id="orderButton-active">ела и си вземи</button>
                     }
                     else
                     {
-                        <button id="orderButton" disabled>поръчай</button>
+                        <button id="orderButton" disabled>ела и си вземи</button>
                     }
                 }
-            </ul>
         </div>
     }
 </div>
 </body>
 </html>
-
-@* Button *@
-

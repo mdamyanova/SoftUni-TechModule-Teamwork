@@ -1,18 +1,88 @@
-﻿@model bYteMe.Post
+﻿@using bYteMe.Models
+@model bYteMe.Post
 
 @{
     ViewBag.Title = "детайли";
 }
-
-<h2>детайли</h2>
-
-<div>
-    @*<h4>Post</h4>*@
-    <hr />
-    <dl class="dl-horizontal">
-    </dl>
+<h2>@ViewBag.Title</h2>
+<!DOCTYPE html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/Content/DetailsStyle.css">
+</head>
+<body>
+<div class="information">
+    <div class="title">
+        <p>@Model.Title</p>
+    </div>
+    <div class="author-date">
+        @{
+            bYteMeDbContext db = new bYteMeDbContext();
+            var author = db.Users.Select(u => u).FirstOrDefault(u => u.Id == Model.AuthorId);
+        }
+        <p>created on @Model.Date by @author.FullName (@author.UserName)</p>
+    </div>
+    <div class="content">
+        <p>@Model.Body</p>
+    </div>
+    @Html.ActionLink("назад", "Index", null, new { @class = "action-link" })
 </div>
-<p>
-    @Html.ActionLink("редактиране", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("назад към публикации", "Index")
-</p>
+</body>
+
+<!--TODO: Fix link to style-->
+<style>    
+ html {
+    overflow-y: scroll;
+}
+
+body {
+    padding: 60px;
+    background: #c1bdba;
+    font-family: 'Tahoma', sans-serif;
+}
+
+.information {
+    background: #13232f;
+    padding: 40px;
+    max-width: 1000px;
+    margin: 40px auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+    overflow: auto;
+}
+
+p {
+    color: white;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.author-date {
+    font-style: italic;
+}
+
+.action-link {
+    color: #1ab188;
+    font-weight: bold;
+}
+.action-link:active {
+    color: #1ab188;
+}
+.action-link:hover {
+    color: white;
+}
+.action-link:visited {
+    color: #1ab188;
+}
+
+.footer {
+    position: static;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+}
+</style>
