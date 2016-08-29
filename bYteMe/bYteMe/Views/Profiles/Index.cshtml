@@ -10,35 +10,53 @@
 <head>
     <title>профили</title>
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="@Href("~/Content/Site.css")"/>
+    <link rel="Stylesheet" href="@Href("~/Content/ProfileStyle.css")" />
     <link rel="Stylesheet" href="@Href("~/Content/ProfilesStyle.css")"/>
 </head>
 <body>
 @foreach (var user in Model)
 {
-    <div class="listProfiles">
-        <ul id="list">
-            <li id="currentProfile">
-                    @{
-                        var imgSrc = user.ProfilePhoto != null ? $"data:image/gif;base64,{Convert.ToBase64String(user.ProfilePhoto)}" : "../images/default-profile-picture.jpg";
-                    }              
-                <img id="profile-picture" class="cut-out" src="@imgSrc" />              
-                <span id="likes">Likes: @user.Likes Dislikes: @user.Dislikes</span>      
+    User currentUser = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+    if (user.Id != currentUser.Id)
+    {
+        <div class="profile-info">
+            <div class="image">
                 @{
-                    User currentUser = System.Web.HttpContext.Current.GetOwinContext()
-                    .GetUserManager<ApplicationUserManager>()
-                    .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-
-                    if (user.Id != currentUser.Id)
-                    {
-                        //TODO: Fix this 
-                        <div>Vote: </div>
-                        <input type="button" value="Go Somewhere Else" onclick=""/>
+                    var imgSrc = user.ProfilePhoto != null ? $"data:image/gif;base64,{Convert.ToBase64String(user.ProfilePhoto)}" : "../images/default-profile-picture.jpg";
                 }
-                    }        
-            </li>
-        </ul>
-    </div>
+
+                <img id="profile-picture" class="cut-out" src="@imgSrc"/>
+            </div>
+            <div class="full-name">
+                <div id="fullName"><label>име:</label><p class="field">@user.FullName</p></div>
+        <div id="userName"><label>потребителско име:</label> <p class="field">@user.UserName</p></div>
+            </div>
+            <div class="biography"><label>биография:</label>
+                <p class="field">@user.Biography</p>
+            </div>
+            <div class="posts">
+               <label>публикации:</label>
+                @{
+                    bYteMeDbContext db = new bYteMeDbContext();
+                    var posts= db.Posts.Select(u => u).Where(p => p.AuthorId == user.Id);
+                    foreach (var post in posts)
+                    {
+                        <div class="field">                            
+                            <p>@post.Title</p>
+                        </div>                        
+                    }
+                }
+            </div>
+            <input type="button" class="gallery-button" value="галерия" onclick="location.href = '@Url.Action("Gallery", "Profile")'"/>
+            <div class="profile-likes">
+                <div class="likes-count">харесвания: <p class="like-field">@user.Likes</p> нехаресвания: <p class="like-field">@user.Dislikes</p></div>
+                <br/>
+                <div>Харесва ли ти: </div>
+                <input type="button" class="like-button" value="да" onclick="" />
+                <input type="button" class="like-button" value="не" onclick="" />
+              </div>          
+        </div>       
+    }
 }
 </body>
 </html>

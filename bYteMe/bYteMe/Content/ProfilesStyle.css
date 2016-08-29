@@ -1,43 +1,29 @@
-﻿body {
-    padding: 60px;
-    background-color: blanchedalmond;
+﻿html {
+    overflow-y: scroll;
 }
 
-#orderButton {
-    float: right;
+body {
+    padding: 120px;
+    background: #c1bdba;
+    font-family: 'Tahoma', sans-serif;
 }
 
-.listProducts {
-  margin: 20px;
-}
- 
-#list {
+.like-button {
     display: inline-block;
-  list-style-type: none;
-  width: 500px;
+    text-decoration: none;
+    padding: 15px;
+    margin: 0 auto;
+    background: rgba(160, 179, 176, 0.25);
+    color: #a0b3b0;
+    font-size: 20px;
+    float: none;
+    width: 9%;
+    text-align: center;
+    cursor: pointer;
+    -webkit-transition: .5s ease;
+    transition: .5s ease;
 }
- 
-#orderImg {
-  vertical-align: text-top;
-  padding: 10px;
-  float: left;
-  margin: 0 15px 0 0;
-}
- 
-#currentProduct {
-  font: 200 12px/1.5 Georgia, Times New Roman, serif;
-}
- 
-#currentProduct {
-  padding: 10px;
-  overflow: auto;
-}
- 
-#currentProduct:hover{
-  background: #eee;
-  cursor: pointer;
-}
-
-#requiredDislikes {
-    float: right;
-}
+    .like-button:hover {
+        background: #179b77;
+        color: #ffffff;
+    }

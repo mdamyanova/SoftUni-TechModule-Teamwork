@@ -63,7 +63,6 @@ a:hover {
   background: #1ab188;
   color: #ffffff;
 }
-
 .tab-content > div:last-child {
   display: none;
 }
@@ -91,7 +90,6 @@ label .req {
   margin: 2px;
   color: #1ab188;
 }
-
 label.active {
   -webkit-transform: translateY(50px);
           transform: translateY(50px);
@@ -101,7 +99,6 @@ label.active {
 label.active .req {
   opacity: 0;
 }
-
 label.highlight {
   color: #ffffff;
 }
@@ -124,7 +121,6 @@ input, textarea, .text-box {
   outline: 0;
   border-color: #1ab188;
 }
-
 textarea {
   border: 2px solid #a0b3b0;
   resize: vertical;
@@ -168,7 +164,6 @@ textarea {
   -webkit-transition: .5s ease;
   transition: .5s ease;
 }
-
 .login-button:hover {
     background: #179b77;
     color: #ffffff;

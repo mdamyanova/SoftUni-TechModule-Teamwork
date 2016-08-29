@@ -1,4 +1,8 @@
-﻿body {
+﻿html {
+    overflow-y: scroll;
+}
+
+body {
     padding: 60px;
     font-family: 'Titillium Web', sans-serif;
     background-image: url('../images/site-background.jpg');
@@ -7,31 +11,28 @@
     background-color: #13232f;
 }
 
-/*TODO: Style text*/
-.text {   
+.text {
     color: rgb(26, 177, 136);
     text-align: center;
     font-weight: bold;
     margin: 0 auto;
     padding: 9px 18px 9px;
     text-decoration: none;
-    
 }
-
-.text :hover {
-    color: white;
-    outline: none;
-    outline-offset: 0;
-    text-decoration: none;
-    cursor: default;
-}
+    .text :hover {
+        color: white;
+        outline: none;
+        outline-offset: 0;
+        text-decoration: none;
+        cursor: default;
+    }
 
 #title {
     letter-spacing: 10px;
     line-height: 3;
     word-spacing: 10px;
     font-size: 80px;
-     text-shadow: 2px 2px 5px #13232f, 0 0 25px #13232f, 0 0 5px #13232f
+    text-shadow: 2px 2px 5px #13232f, 0 0 25px #13232f, 0 0 5px #13232f;
 }
 
 #subtitle {
@@ -39,12 +40,5 @@
     line-height: 4;
     word-spacing: 3px;
     font-size: 26px;
-    text-shadow: #13232f 0px 0px 1px,  #13232f 0px 0px 1px,   #13232f 0px 0px 1px,
-            #13232f 0px 0px 1px,  #13232f 0px 0px 1px,  #13232f 0px 0px 1px;
+    text-shadow: #13232f 0px 0px 1px, #13232f 0px 0px 1px, #13232f 0px 0px 1px, #13232f 0px 0px 1px, #13232f 0px 0px 1px, #13232f 0px 0px 1px;
 }
-/*font-size: 40px;
-    color: black;
-    text-align: center;
-    letter-spacing: 3px;
-    line-height: 0.8;
-    word-spacing: 5px;*/

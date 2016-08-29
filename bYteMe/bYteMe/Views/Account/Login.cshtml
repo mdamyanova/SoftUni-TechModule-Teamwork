@@ -5,7 +5,6 @@
     ViewBag.Title = "вписване";
 }
 <!DOCTYPE html>
-<html>
 <head>
     <meta charset="UTF-8">
     <title>@ViewBag.Title</title>
@@ -17,7 +16,7 @@
 <body>
 <div class="form">
     <ul class="tab-group">
-        <li><a>регистрация</a></li>
+        <li class="tab" onclick="location.pathname=''">@Html.ActionLink("назад", "")</li>
         <li class="tab active"><a href="#login">вписване</a></li>
     </ul>
     <div class="tab-content">
@@ -49,7 +48,6 @@
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src="../../Scripts/loginScript.js"></script>
 </body>
-</html>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

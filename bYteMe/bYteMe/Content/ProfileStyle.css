@@ -1,21 +1,21 @@
 ﻿html {
-  overflow-y: scroll;
+    overflow-y: scroll;
 }
 
 body {
-  padding: 120px;
-  background: #c1bdba;
-  font-family: 'Tahoma', sans-serif;
+    padding: 120px;
+    background: #c1bdba;
+    font-family: 'Tahoma', sans-serif;
 }
 
 .profile-info {
-  background: #13232f;
-  padding: 20px;
-  max-width: 1000px;
-  margin: 40px auto;
-  border-radius: 4px;
-  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
-  overflow: auto;
+    background: #13232f;
+    padding: 20px;
+    max-width: 1000px;
+    margin: 40px auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+    overflow: auto;
 }
 
 .image {
@@ -33,32 +33,63 @@ div {
 }
 
 .gallery-button {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 40px 0;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 40px 0;
+    content: "";
+    display: table;
+    clear: both;
+    display: block;
+    text-decoration: none;
+    padding: 15px;
+    background: rgba(160, 179, 176, 0.25);
+    color: #a0b3b0;
+    font-size: 20px;
+    float: none;
+    width: 50%;
+    text-align: center;
+    cursor: pointer;
+    -webkit-transition: .5s ease;
+    transition: .5s ease;
+}
+    .gallery-button:hover {
+        background: #179b77;
+        color: #ffffff;
+    }
+
+.profile-likes {
+    margin: 0 auto;
+    text-align: center;
 }
 
-.gallery-button {
-  content: "";
-  display: table;
-  clear: both;
+.field {
+    background: #13232f;
+    padding: 6px;
+    max-width: 1000px;
+    margin: 20px auto;
+    border-radius: 6px;
+    box-shadow: 0 1px 20px 1px #179b77;
+    overflow: auto;
 }
 
-.gallery-button {
-  display: block;
-  text-decoration: none;
-  padding: 15px;
-  background: rgba(160, 179, 176, 0.25);
-  color: #a0b3b0;
-  font-size: 20px;
-  float:none;
-  width: 50%;
-  text-align: center;
-  cursor: pointer;
-  -webkit-transition: .5s ease;
-  transition: .5s ease;
+.like-field {
+    background: #13232f;
+    padding: 20px;
+    max-width: 190px;
+    margin: 10px auto;
+    border-radius: 6px;
+    box-shadow: 0 1px 20px 1px #179b77;
+    overflow: auto;
 }
-.gallery-button:hover {
-  background: #179b77;
-  color: #ffffff;
+
+label {
+    font-weight: bold;
+}
+
+.footer {
+    position: static;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
 }

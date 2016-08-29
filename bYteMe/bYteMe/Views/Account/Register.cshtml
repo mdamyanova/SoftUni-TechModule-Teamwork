@@ -16,8 +16,8 @@
 <body>
 <div class="form">
     <ul class="tab-group">
+        <li class="tab" onclick="location.pathname=''">@Html.ActionLink("назад", "")</li>
         <li class="tab active"><a href="#signup">регистрация</a></li>
-        <li><a>вписване</a></li>
     </ul>
     <div class="tab-content">
     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))

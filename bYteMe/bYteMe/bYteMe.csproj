@@ -228,6 +228,10 @@
     <Content Include="Content\HomeStyle.css" />
     <Content Include="Content\Login\LoginStyle.css" />
     <Content Include="Content\Login\Normalize.css" />
+    <Content Include="Content\Manage\ManageFormsStyle.css" />
+    <Content Include="Content\Manage\ManageStyle.css" />
+    <Content Include="Content\Manage\Normalize.css" />
+    <Content Include="Content\Posts\PostsStyle.css" />
     <Content Include="Content\ProfilesStyle.css" />
     <Content Include="Content\OrdersStyle.css" />
     <Content Include="Content\ProfileStyle.css" />
@@ -308,7 +312,6 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Profile\Gallery.cshtml" />
-    <Content Include="Views\Profile\Edit.cshtml" />
     <Content Include="Views\Manage\EditProfile.cshtml" />
     <Content Include="Views\Manage\Delete.cshtml" />
   </ItemGroup>

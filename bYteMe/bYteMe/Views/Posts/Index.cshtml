@@ -3,9 +3,15 @@
 @{
     ViewBag.Title = "публикации";
 }
+<!DOCTYPE html>
 <meta charset="UTF-8">
-@*<h2>Index</h2>*@
+<head>
+    <title>публикации</title>
 
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="Stylesheet" href="@Href("~/Content/Posts/PostsStyle.css")" />
+</head>
+<body>
 <p>
     @Html.ActionLink("нова публикация", "Create")
 </p>
@@ -27,25 +33,26 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @{ string postTitle = item.Title.Length <= 30 ? item.Title : item.Title.Substring(0, 27) + "...";}
-            @postTitle
-        </td>
-        <td>
-            @{ string postBody = item.Body.Length <= 40 ? item.Body : item.Body.Substring(0, 37) + "...";}
-            @postBody
-        </td>
-        <td>
-           @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.ActionLink("редактиране", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("детайли", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("изтриване", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @{ string postTitle = item.Title.Length <= 30 ? item.Title : item.Title.Substring(0, 27) + "...";}
+                @postTitle
+            </td>
+            <td>
+                @{ string postBody = item.Body.Length <= 40 ? item.Body : item.Body.Substring(0, 37) + "...";}
+                @postBody
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.ActionLink("редактиране", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("детайли", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("изтриване", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
 </table>
+</body>
