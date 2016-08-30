@@ -64,12 +64,14 @@ th {
 
 .action-link {
     color: #1ab188;
+    text-decoration:none;
 }
 .action-link:active {
     color: #1ab188;
 }
 .action-link:hover {
     color: white;
+    text-decoration:none;
 }
 .action-link:visited {
     color: #1ab188;

@@ -211,6 +211,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Delivery.cs" />
     <Compile Include="Models\ExtendedIdentityModels.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\bYteMeDbContext.cs" />
@@ -231,6 +232,8 @@
     <Content Include="Content\Manage\ManageFormsStyle.css" />
     <Content Include="Content\Manage\ManageStyle.css" />
     <Content Include="Content\Normalize.css" />
+    <Content Include="Content\Orders\OrdersFormsStyle.css" />
+    <Content Include="Content\Orders\OrdersStyle.css" />
     <Content Include="Content\Posts\DetailsStyle.css" />
     <Content Include="Content\Posts\PostsFormsStyle.css" />
     <Content Include="Content\Posts\PostsStyle.css" />
@@ -316,6 +319,7 @@
     <Content Include="Views\Profile\Gallery.cshtml" />
     <Content Include="Views\Manage\EditProfile.cshtml" />
     <Content Include="Views\Manage\Delete.cshtml" />
+    <Content Include="Views\Orders\Order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

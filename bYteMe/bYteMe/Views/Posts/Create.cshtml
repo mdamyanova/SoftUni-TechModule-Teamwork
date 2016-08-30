@@ -1,51 +1,51 @@
-﻿@using bYteMe.Models
-@using Microsoft.AspNet.Identity
-@using Microsoft.AspNet.Identity.Owin
+﻿@using System.EnterpriseServices
+@using bYteMe.Models
 @model bYteMe.Post
-
 @{
     ViewBag.Title = "нова публикация";
 }
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>нова публикация</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-          
-            <div class="col-md-10">
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Body, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="създай" class="btn btn-default" />
-            </div>
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title</title>
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/Content/Posts/PostsFormsStyle.css">
+    <link rel="stylesheet" href="/Content/Normalize.css">
+</head>
+<body>
+    <div class="form">
+        <ul class="tab-group">
+            <li class="tab" onclick="location.pathname=''">@Html.ActionLink("назад", "")</li>
+            <li class="tab active"><a>нова публикация</a></li>
+        </ul>
+        <div class="tab-content">
+            @using (Html.BeginForm("Create", "Posts", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div id="create">
+                    <form action="/" method="post">
+                        <div class="field-wrap">
+                            <label>
+                                заглавие<span class="req">*</span>
+                            </label>
+                            @Html.TextAreaFor(m => m.Title, new { @class = "text-box", autocomplete = "off" })
+                        </div>
+                        <div class="field-wrap">
+                            <label>
+                                съдържание<span class="req">*</span>
+                            </label>
+                            @Html.TextBoxFor(m => m.Body, new { @class = "text-box", autocomplete = "off" })
+                        </div>
+                        <button class="submit-button">създай</button>
+                    </form>
+                </div>
+            }
         </div>
     </div>
-}
-<div>
-    @Html.ActionLink("назад към публикации", "Index")
-</div>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="../../Scripts/loginScript.js"></script>
+</body>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

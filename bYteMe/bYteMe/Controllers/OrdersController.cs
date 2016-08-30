@@ -54,5 +54,10 @@
 
             return this.View(db.Orders);
         }
+
+        public ActionResult Order()
+        {
+            return this.View();
+        }
     }
 }

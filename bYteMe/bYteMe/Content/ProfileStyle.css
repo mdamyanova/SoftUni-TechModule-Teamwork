@@ -91,6 +91,21 @@ label {
     font-weight: bold;
 }
 
+.action-link {
+    color: white;
+    text-decoration:none;
+}
+.action-link:active {
+    color: #1ab188;
+}
+.action-link:hover {
+    color: #1ab188;
+    text-decoration:none;
+}
+.action-link:visited {
+    color: #1ab188;
+}
+
 .footer {
     position: static;
     right: 0;

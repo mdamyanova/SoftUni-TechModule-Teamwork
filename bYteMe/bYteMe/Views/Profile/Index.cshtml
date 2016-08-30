@@ -46,7 +46,7 @@
                         foreach (var post in posts)
                         {
                             <div class="field">
-                                <p>@post.Title</p>
+                               @Html.ActionLink(@post.Title, "Details", "Posts", new { id = post.Id }, new { @class = "action-link" })
                             </div>
                         }
                     }

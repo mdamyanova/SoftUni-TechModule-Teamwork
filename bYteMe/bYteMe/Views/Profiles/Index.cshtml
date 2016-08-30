@@ -50,7 +50,7 @@
                             foreach (var post in posts)
                             {
                                 <div class="field">
-                                    <p>@post.Title</p>
+                                    @Html.ActionLink(@post.Title, "Details", "Posts", new { id = post.Id }, new { @class = "action-link" })
                                 </div>
                             }
                         }
@@ -65,8 +65,8 @@
                 </div>
                 <br/>                  
                         <div>Харесва ли ти: </div>
-                        @Html.ActionLink("да", "Like", "Profiles", new { name = user.UserName }, null)
-                        @Html.ActionLink("не", "Dislike", "Profiles", new { name = user.UserName }, null)               
+                        @Html.ActionLink("да", "Like", "Profiles", new { name = user.UserName }, new { @class = "action-link" })
+                        @Html.ActionLink("не", "Dislike", "Profiles", new { name = user.UserName }, new { @class = "action-link" })               
             </div>
         </div>
     }

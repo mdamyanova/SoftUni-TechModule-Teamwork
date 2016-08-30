@@ -27,6 +27,21 @@ p {
     color: white;
 }
 
+a {
+    color: #1ab188;
+    text-decoration:none;
+}
+a:active {
+    color: #1ab188;
+}
+a:hover {
+    color: white;
+    text-decoration:none;
+}
+a:visited {
+    color: #1ab188;
+}
+
 .footer {
     position: static;
     right: 0;

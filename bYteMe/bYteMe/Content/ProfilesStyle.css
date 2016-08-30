@@ -8,26 +8,6 @@ body {
     font-family: 'Tahoma', sans-serif;
 }
 
-.like-button {
-    display: inline-block;
-    text-decoration: none;
-    padding: 15px;
-    margin: 0 auto;
-    background: rgba(160, 179, 176, 0.25);
-    color: #a0b3b0;
-    font-size: 20px;
-    float: none;
-    width: 9%;
-    text-align: center;
-    cursor: pointer;
-    -webkit-transition: .5s ease;
-    transition: .5s ease;
-}
-    .like-button:hover {
-        background: #179b77;
-        color: #ffffff;
-    }
-
 .footer {
     position: absolute;
     right: 0;
