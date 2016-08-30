@@ -1,12 +1,9 @@
 namespace bYteMe
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
-    public partial class Photo
+    public class Photo
     {
         [Key]
         [Column(Order = 0)]

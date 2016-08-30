@@ -1,13 +1,9 @@
 ﻿namespace bYteMe.Controllers
 {
-    using System.Data.Entity;
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
-
-    using bYteMe.Constants;
     using bYteMe.Models;
-
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
 
@@ -20,7 +16,7 @@
                 .GetUserManager<ApplicationUserManager>()
                 .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
 
-        readonly bYteMeDbContext db = new bYteMeDbContext();
+        private readonly bYteMeDbContext db = new bYteMeDbContext();
 
         public ActionResult Index()
         {
@@ -33,6 +29,7 @@
             return this.View(photos);
         }
 
+        // TODO
         public ActionResult AddPhoto(string pictureArr, string description)
         {
             var photo = new Photo();

@@ -6,7 +6,7 @@ namespace bYteMe.Models
 {
     public class bYteMeDbContext : IdentityDbContext<User>
     {
-        // replace default connection with bYteMe database ? 
+        // replace default connection with bYteMe database 
         public bYteMeDbContext()
             : base("bYteMeDbContext", throwIfV1Schema: false)
         {

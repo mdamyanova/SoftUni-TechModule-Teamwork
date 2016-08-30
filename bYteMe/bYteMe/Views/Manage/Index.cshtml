@@ -8,14 +8,13 @@
 <!DOCTYPE html>
 <head>
     <title>@ViewBag.Title</title>
-    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="@Href("~/Content/Manage/ManageStyle.css")" />
 </head>
 <body>
     <p class="text-success">@ViewBag.StatusMessage</p>
     <div>
         <dl class="dl-horizontal">
-            <h4>променете настройки на профила</h4>
+            <h4>настройки на профила</h4>
             <dt>парола: </dt>
             <dd>
                 [@(Model.HasPassword ? Html.ActionLink("промяна на парола", "ChangePassword", null, new { @class = "action-link" }) : Html.ActionLink("създай", "SetPassword", null, new { @class = "action-link" }))]

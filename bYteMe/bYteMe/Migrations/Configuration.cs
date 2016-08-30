@@ -1,14 +1,14 @@
 namespace bYteMe.Migrations
 {
     using System;
+    using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.Drawing;
     using System.IO;
     using System.Linq;
-    using System.Text;
-    using System.Web.UI.WebControls;
 
+    using bYteMe.Constants;
     using bYteMe.Models;
-
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -22,21 +22,21 @@ namespace bYteMe.Migrations
         }
 
         protected override void Seed(Models.bYteMeDbContext context)
-        {
+        {         
             if (!context.Users.Any())
             {
                 // if the database is empty, populate sample data in it
-                for (int i = 0; i < 10; i++)
+                for (var i = 0; i < 10; i++)
                 {
                     var userName = bYteMe.Constants.TextConstants.UserNames[i];
                     var fullName = bYteMe.Constants.TextConstants.FullNames[i];
                     var biography = bYteMe.Constants.TextConstants.Biographies[i];
                     var email = userName + "@bYteMeMail.com";
                     var password = "123";
-                    this.CreateUser(context, userName, fullName, biography, email, password, 10, 8);
+                    CreateUser(context, userName, fullName, biography, email, password, 10, 8);
                 }
 
-                this.CreatePost(
+                CreatePost(
                     context,
                     "gosho",
                     "Rakia",
@@ -48,20 +48,20 @@ namespace bYteMe.Migrations
                     + "flavor and a deep and smooth taste. They are produced according to age old local traditions. Rakia is most commonly made from grapes and is a limpid, crystal-clear "
                     + "liquid with an intense aroma and the fine unmistakable flavor of the grape (Muscat, Cabernet, Gewurztraminer, Chardonnay, etc) it is made from. Colors and taste can vary – "
                     + "the color of rakia could vary from liquid clear to golden salmon and the taste could vary from distinctively grape-tasting to vanilla and toasted nut flavors, with powdered sugar and pepper fade nuances.");
-                this.CreatePost(
+                CreatePost(
                     context,
                     "grape",
                     "Bulgarian wine",
                     "Grape growing and wine production have a long history in Bulgaria, dating back to the times of the Thracians. Wine is, together with beer and grape rakia, among the most popular alcoholic beverages in the country.\r\n\r\nBulgaria"
                     + " was the world\'s second largest wine producer in 1980s, but the industry declined after the collapse of communism.[1][2] Wine production is growing again, reaching 108m litres in 2011, an increase of 4.9% from the previous year.");
-                this.CreatePost(
+                CreatePost(
                     context,
                     "ouzo134",
                     "Ouzo History",
                     "Ouzo has its roots in tsipouro, which is said to have been the work of a group of 14th-century monks on Mount Athos. One version of it was flavoured with anise. This version eventually came to be called ouzo. Modern ouzo "
                     + "distillation largely took off in the beginning of the 19th century following Greek independence. The first ouzo distillery was founded in Tyrnavos in 1856 by Nikolaos Katsaros, giving birth to the famous ouzo Tyrnavou. When "
                     + "absinthe fell into disfavour in the early 20th century, ouzo was one of the products whose popularity rose to fill the gap; it was once called \"a substitute for absinthe without the wormwood\".");
-                this.CreatePost(
+                CreatePost(
                     context,
                     "gosho",
                     "Meaning of name Georgi",
@@ -73,7 +73,7 @@ namespace bYteMe.Migrations
                     + "often to the detriment of his internal equilibrium. Of course, the inherent risks of his master number are all sorts of excess: too much kindness or humility - and their opposites: megalomania, tyranny, abuse of power "
                     + "and Machiavellianism... As a child, he is brave and determined and already knows exactly what he wants. A conflict of authority could arise from an upbringing that is too lax or interfering, but his parents can rest assured, "
                     + "he is somebody who can be trusted.");
-                this.CreatePost(
+                CreatePost(
                     context,
                     "sasheto0o",
                     "The 10 Things That Happen When You Fall In Love with a Programmer",
@@ -97,7 +97,7 @@ namespace bYteMe.Migrations
             }
         }
      
-        private void CreateUser(bYteMeDbContext context, string userName, string fullName, string biography, string email, string password, int likes, int dislikes)
+        private static void CreateUser(DbContext context, string userName, string fullName, string biography, string email, string password, int likes, int dislikes)
         {
            var userManager = new UserManager<User>(new UserStore<User>(context));
             userManager.PasswordValidator = new PasswordValidator()
@@ -109,12 +109,11 @@ namespace bYteMe.Migrations
                                                     RequireUppercase = false
                                                 };
             var startDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string[] imagesPaths = new[]
-                                       {
-                                           "classy_dev", "desperate_wife", "gosho", "grape", "hacker", "ouzo134",
-                                           "sasheto0o"
-                                       };
-            string path = startDirectory + "/images/default-profile-picture.jpg";
+            string[] imagesPaths =
+                {
+                    "classy_dev", "desperate_wife", "gosho", "grape", "hacker", "ouzo134", "sasheto0o"
+                };
+            var path = startDirectory + "/images/default-profile-picture.jpg";
 
             if (imagesPaths.Any(n => n == userName))
             {
@@ -122,12 +121,12 @@ namespace bYteMe.Migrations
                
             }
 
-            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
-            BinaryReader br = new BinaryReader(fs);
+            var fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+            var br = new BinaryReader(fs);
             var image = br.ReadBytes((int)fs.Length);
-
             br.Close();
             fs.Close();
+
             var user = new User
                            {
                                UserName = userName,
@@ -146,7 +145,7 @@ namespace bYteMe.Migrations
             }
         }
 
-        private void CreatePost(bYteMeDbContext context, string username, string title, string body)
+        private static void CreatePost(bYteMeDbContext context, string username, string title, string body)
         {
             var post = new Post
                            {

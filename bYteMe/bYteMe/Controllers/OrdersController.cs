@@ -5,7 +5,6 @@
     using System.IO;
     using System.Linq;
     using System.Web.Mvc;
-
     using bYteMe.Constants;
     using bYteMe.Models;
 
@@ -14,28 +13,27 @@
     {
         public ActionResult Index()
         {
-           const int DefaultCountOfOrders = 4;
-           const int DefaultCountDislikes = 8;
-           bYteMeDbContext db = new bYteMeDbContext();
-
-           if (!db.Orders.Any())
-           {
+            const int DefaultCountOfOrders = 4;
+            const int DefaultCountDislikes = 8;
+            var db = new bYteMeDbContext();
+            if (!db.Orders.Any())
+            {
                 var startDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                string[] imagesPaths = new[]
-                                           {
-                                               startDirectory + "images\\orders\\beer.jpg",
-                                               startDirectory + "images\\orders\\beers.jpg",
-                                               startDirectory + "images\\orders\\rakia.jpg",
-                                               startDirectory + "images\\orders\\alcohol-roulette.jpg"
-                                           };
-               string[] descriptions = TextConstants.OrdersDescriptions;
+                string[] imagesPaths =
+                    {
+                       startDirectory + "images\\orders\\beer.jpg",
+                       startDirectory + "images\\orders\\beers.jpg",
+                       startDirectory + "images\\orders\\rakia.jpg",
+                       startDirectory + "images\\orders\\alcohol-roulette.jpg"
+                   };
+                var descriptions = TextConstants.OrdersDescriptions;
 
-                for (int i = 1; i <= DefaultCountOfOrders; i++)
+                for (var i = 1; i <= DefaultCountOfOrders; i++)
                 {
-                    Order order = new Order { OrderId = i };
-                    Image img = Image.FromFile(imagesPaths[i - 1]);
+                    var order = new Order { OrderId = i };
+                    var img = Image.FromFile(imagesPaths[i - 1]);
                     byte[] arr;
-                    using (MemoryStream ms = new MemoryStream())
+                    using (var ms = new MemoryStream())
                     {
                         img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
                         arr = ms.ToArray();
@@ -44,7 +42,7 @@
                     order.Photo = arr;
                     order.Description = descriptions[i - 1];
 
-                    int dislikes = DefaultCountDislikes * i * i;
+                    var dislikes = DefaultCountDislikes * i * i;
                     order.RequiredDislikes = dislikes * i;
                     db.Orders.Add(order);
                 }

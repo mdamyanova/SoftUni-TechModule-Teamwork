@@ -10,10 +10,6 @@ namespace bYteMe.Models
         public bool HasPassword { get; set; }
 
         public IList<UserLoginInfo> Logins { get; set; }
-
-        // public string PhoneNumber { get; set; }
-        // public bool TwoFactor { get; set; }
-        // public bool BrowserRemembered { get; set; }
     }
 
     public class ManageLoginsViewModel
@@ -59,26 +55,6 @@ namespace bYteMe.Models
         [Display(Name = "потвърдете новата парола")]
         [Compare("NewPassword", ErrorMessage = "Паролите не съвпадат.")]
         public string ConfirmPassword { get; set; }
-    }
-
-    public class AddPhoneNumberViewModel
-    {
-        [Required]
-        [Phone]
-        [Display(Name = "телефонен номер")]
-        public string Number { get; set; }
-    }
-
-    public class VerifyPhoneNumberViewModel
-    {
-        [Required]
-        [Display(Name = "код")]
-        public string Code { get; set; }
-
-        [Required]
-        [Phone]
-        [Display(Name = "телефонен номер")]
-        public string PhoneNumber { get; set; }
     }
 
     public class ConfigureTwoFactorViewModel

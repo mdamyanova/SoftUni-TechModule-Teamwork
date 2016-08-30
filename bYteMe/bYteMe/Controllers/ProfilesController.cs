@@ -1,32 +1,24 @@
 ﻿namespace bYteMe.Controllers
 {
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Linq;
-    using System.Web;
     using System.Web.Mvc;
-
     using bYteMe.Models;
-
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.Owin;
 
     [Authorize]
     public class ProfilesController : Controller
     {
-        readonly bYteMeDbContext db = new bYteMeDbContext();
-
-        readonly User currentUser = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+        private readonly bYteMeDbContext db = new bYteMeDbContext();
 
         public ActionResult Index()
         {
-            var users = db.Users.Select(u => u).ToList();
+            var users = this.db.Users.Select(u => u).ToList();
             return this.View(users);
         }
 
         public ActionResult Likes(string id)
         {
-            User user = this.db.Users.FirstOrDefault(u => u.Id == id);
+            var user = this.db.Users.FirstOrDefault(u => u.Id == id);
             if (user != null && user.Likes == null)
             {
                 user.Likes = 0;

@@ -2,9 +2,10 @@
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
+
 namespace bYteMe.Controllers
 {
+    using System;
     using System.Web;
 
     using bYteMe.Models;
@@ -46,7 +47,6 @@ namespace bYteMe.Controllers
             return this.View();
         }
 
-        // TODO: Make when creating post to not asking for author id and post id and complete them automaticaly
         // POST: Posts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -90,16 +90,25 @@ namespace bYteMe.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AuthorId,Id,Title,Body")] Post post)
+        public ActionResult Edit(Post editedPost)
         {
+            User currentUser =
+           System.Web.HttpContext.Current.GetOwinContext()
+               .GetUserManager<ApplicationUserManager>()
+               .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
             if (this.ModelState.IsValid)
             {
+                var post = this.db.Posts.FirstOrDefault(p => p.Id == editedPost.Id);
+                post.AuthorId = currentUser.Id;
+                post.Date = DateTime.Now;
+                post.Title = editedPost.Title;
+                post.Body = editedPost.Body;
                 this.db.Entry(post).State = EntityState.Modified;
                 this.db.SaveChanges();
-                return this.RedirectToAction("Index");
+                
             }
-
-            return this.View(post);
+            return this.RedirectToAction("Index");
+            //return this.View(post);
         }
 
         // GET: Posts/Delete/5

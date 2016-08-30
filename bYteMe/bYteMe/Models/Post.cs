@@ -1,23 +1,10 @@
 namespace bYteMe
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-    using System.Linq;
-    using System.Web;
-    using System.Web.Security;
 
-    using bYteMe.Models;
-
-    using Microsoft.Ajax.Utilities;
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.Owin;
-
-    using Context = System.Runtime.Remoting.Contexts.Context;
-
-    public partial class Post
+    public class Post
     {      
         public Post()
         {

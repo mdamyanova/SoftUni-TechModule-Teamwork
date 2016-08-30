@@ -2,9 +2,7 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-
 using bYteMe.Models;
-
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -12,7 +10,6 @@ using Microsoft.Owin.Security;
 namespace bYteMe.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
 
     [Authorize]
@@ -307,16 +304,6 @@ namespace bYteMe.Controllers
             return this.View();
         }
 
-        // POST: /Account/ExternalLogin
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public ActionResult ExternalLogin(string provider, string returnUrl)
-        {
-            // Request a redirect to the external login provider
-            return new ChallengeResult(provider, this.Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
-        }
-
         // GET: /Account/SendCode
         [AllowAnonymous]
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
@@ -349,71 +336,6 @@ namespace bYteMe.Controllers
             return this.RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, model.ReturnUrl, model.RememberMe });
         }
 
-        // GET: /Account/ExternalLoginCallback
-        [AllowAnonymous]
-        public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
-        {
-            var loginInfo = await this.AuthenticationManager.GetExternalLoginInfoAsync();
-            if (loginInfo == null)
-            {
-                return this.RedirectToAction("Login");
-            }
-
-            // Sign in the user with this external login provider if the user already has a login
-            var result = await this.SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    return this.RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return this.View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return this.RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
-                default:
-                    // If the user does not have an account, then prompt the user to create an account
-                    this.ViewBag.ReturnUrl = returnUrl;
-                    this.ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return this.View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { UserName = loginInfo.DefaultUserName });
-            }
-        }
-
-        // POST: /Account/ExternalLoginConfirmation
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
-        {
-            if (this.User.Identity.IsAuthenticated)
-            {
-                return this.RedirectToAction("Index", "Manage");
-            }
-            if (this.ModelState.IsValid)
-            {
-                // Get the information about the user from the external login provider
-                var info = await this.AuthenticationManager.GetExternalLoginInfoAsync();
-                if (info == null)
-                {
-                    return this.View("ExternalLoginFailure");
-                }
-                var user = new User { UserName = model.UserName };
-                var result = await this.UserManager.CreateAsync(user);
-                if (result.Succeeded)
-                {
-                    result = await this.UserManager.AddLoginAsync(user.Id, info.Login);
-                    if (result.Succeeded)
-                    {
-                        await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                        return this.RedirectToLocal(returnUrl);
-                    }
-                }
-
-                this.AddErrors(result);
-            }
-
-            this.ViewBag.ReturnUrl = returnUrl;
-            return this.View(model);
-        }
-
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -423,12 +345,6 @@ namespace bYteMe.Controllers
             return this.RedirectToAction("Index", "Home");
         }
 
-        // GET: /Account/ExternalLoginFailure
-        [AllowAnonymous]
-        public ActionResult ExternalLoginFailure()
-        {
-            return this.View();
-        }
 
         protected override void Dispose(bool disposing)
         {
