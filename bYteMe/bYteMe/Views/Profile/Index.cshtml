@@ -11,10 +11,11 @@
 <head>
     <title>профил</title>
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="@Href("~/Content/ProfileStyle.css")"/>
+    <link rel="stylesheet" href="@Href("~/Content/Profile/ProfileStyle.css")"/>
 </head>
 <body>
-    <div class="profile-info">
+<div class="profile-info">
+    <div class="container-info">
         <div class="image">
             @{
                 var imgSrc = Model.ProfilePhoto != null ? $"data:image/gif;base64,{Convert.ToBase64String(Model.ProfilePhoto)}" : "../images/default-profile-picture.jpg";
@@ -24,10 +25,12 @@
         </div>
         <div class="text">
             <div class="full-name">
-                <div id="fullName"><label>име:</label>
+                <div id="fullName">
+                    <label>име:</label>
                     <p class="field">@Model.FullName</p>
                 </div>
-                <div id="userName"><label>потребителско име:</label>
+                <div id="userName">
+                    <label>потребителско име:</label>
                     <p class="field">@Model.UserName</p>
                 </div>
             </div>
@@ -36,7 +39,7 @@
                 <p class="field">@Model.Biography</p>
             </div>
             @* TODO: List posts from current user *@
-            <div class="posts">               
+            <div class="posts">
                 @{
                     bYteMeDbContext db = new bYteMeDbContext();
                     var posts = db.Posts.Select(u => u).Where(p => p.AuthorId == Model.Id);
@@ -46,21 +49,23 @@
                         foreach (var post in posts)
                         {
                             <div class="field">
-                               @Html.ActionLink(@post.Title, "Details", "Posts", new { id = post.Id }, new { @class = "action-link" })
+                                @Html.ActionLink(@post.Title, "Details", "Posts", new { id = post.Id }, new { @class = "action-link" })
                             </div>
                         }
                     }
                 }
             </div>
-            <input type="button" class="gallery-button" value="галерия" onclick="location.href = '@Url.Action("Gallery", "Profile")'"/>
         </div>
-         <div class="profile-likes">
-            <div class="likes-count">
-                <label>харесвания:</label>
-                <p class="like-field">@Model.Likes</p><label>нехаресвания:</label>
-                <p class="like-field">@Model.Dislikes</p>
-            </div>
+    </div>
+    <input type="button" class="gallery-button" value="галерия" onclick="location.href = '@Url.Action("Gallery", "Profile")'"/>
+    <br/>
+    <div class="profile-likes">
+        <div class="likes-count">
+            <label>харесвания:</label>
+            <p class="like-field">@Model.Likes</p><label>нехаресвания:</label>
+            <p class="like-field">@Model.Dislikes</p>
         </div>
-        </div>
+    </div>
+</div>
 </body>
 </html>

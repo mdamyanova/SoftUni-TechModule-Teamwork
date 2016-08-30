@@ -11,7 +11,9 @@ using Microsoft.Owin.Security;
 
 namespace bYteMe.Controllers
 {
+    using System;
     using System.Collections.Generic;
+    using System.IO;
 
     [Authorize]
     public class AccountController : Controller
@@ -160,10 +162,24 @@ namespace bYteMe.Controllers
                     }
                 }
 
-                if (model.UserProfilePicture != null)
+                byte[] data;
+                if (model.UserProfilePicture == null)
                 {
-                    byte[] data = new byte[model.UserProfilePicture.ContentLength];
+                    FileStream fs = new FileStream(
+                        AppDomain.CurrentDomain.BaseDirectory + "/images/default-profile-picture.jpg",
+                        FileMode.Open,
+                        FileAccess.Read);
+                    BinaryReader br = new BinaryReader(fs);
+                    byte[] image = br.ReadBytes((int)fs.Length);
+                    br.Close();
+                    fs.Close();
+                    data = image;
+                }
+                else
+                {
+                    data = new byte[model.UserProfilePicture.ContentLength];
                     model.UserProfilePicture.InputStream.Read(data, 0, model.UserProfilePicture.ContentLength);
+                }                           
                     if (db.Users.Any(u => u.UserName == model.UserName))
                     {
                      this.ModelState.AddModelError("", "вече има пич с такова потребителско име");   
@@ -190,9 +206,7 @@ namespace bYteMe.Controllers
 
                         return this.RedirectToAction("Index", "Home");
                     }
-                    this.AddErrors(result);
-                }
-                
+                    this.AddErrors(result);                         
             }
             // If we got this far, something failed, redisplay form
             return this.View(model);

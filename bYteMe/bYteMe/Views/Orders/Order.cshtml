@@ -1,5 +1,4 @@
 ﻿<!--UNFINISHED-->
-@model bYteMe.Models.Delivery
 @{
     ViewBag.Title = "утешителна награда";
 }
@@ -30,31 +29,31 @@
                                 <label>
                                     име и фамилия<span class="req">*</span>
                                 </label>
-                                @Html.TextBoxFor(m => m.FullName, new { @class = "text-box", autocomplete = "off" })
+                                <input type="text" class="text-box" autocomplete="off" />
                             </div>
                             <div class="field-wrap">
                                 <label>
                                     град<span class="req">*</span>
                                 </label>
-                                @Html.TextBoxFor(m => m.City, new { @class = "text-box", autocomplete = "off" })
+                                <input type="text" class="text-box" autocomplete="off"/>
                             </div>
                             <div class="field-wrap">
                                 <label>
                                     улица<span class="req">*</span>
                                 </label>
-                                @Html.TextBoxFor(m => m.Street, new { @class = "text-box", autocomplete = "off" })
+                                <input type="text" class="text-box" autocomplete="off" />
                             </div>
                             <div class="field-wrap">
                                 <label>
                                     телефонен номер<span class="req">*</span>
                                 </label>
-                                @Html.TextBoxFor(m => m.Phone, new { @class = "text-box", autocomplete = "off" })
+                                <input type="text" class="text-box" autocomplete="off" />
                             </div>
                             <div class="field-wrap">
                                 <label>
                                     коментар<span class="req">*</span>
                                 </label>
-                                @Html.TextBoxFor(m => m.Comment, new { @class = "text-box", autocomplete = "off" })
+                                <input type="text" class="text-box" autocomplete="off" />
                             </div>
                         </div>
                         <button class="submit-button">промяна</button>

@@ -1,18 +1,25 @@
-﻿@model System.Collections.Generic.List<bYteMe.Photo>
+﻿<!--UNFINISHED-->
+@model System.Collections.Generic.List<bYteMe.Photo>
 
 @{
-    Layout = null;
+    ViewBag.Title = "галерия";
 }
-
 <!DOCTYPE html>
-
 <html>
 <head>
-    <title>title</title>
+    <title>@ViewBag.Title</title>
+    <link rel="Stylesheet" href="@Href("~/Content/Profile/GalleryStyle.css")" />
 </head>
 <body>
-<div>
-      
+    <input type="button" class="add-photo-button" value="качи снимка" onclick="location.href = '@Url.Action("AddPhoto", "Profile")'" />
+<div class="photos">
+    <p>галерия</p>
+    @foreach (var photo in Model)
+    {
+        var data = new byte[photo.PhotoPicture.Length];
+        var imgSrc = $"data:image/gif;base64,{Convert.ToBase64String(data)}";
+        <img id="profile-picture" class="cut-out" src="@imgSrc"/>
+    }
 </div>
 </body>
 </html>

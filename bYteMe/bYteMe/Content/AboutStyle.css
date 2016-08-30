@@ -23,8 +23,9 @@ body {
     margin: 5px 5px 15px 20px;
 }
 
-p {
+p, li {
     color: white;
+    font-weight: bold;
 }
 
 a {

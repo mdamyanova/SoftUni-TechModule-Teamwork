@@ -26,16 +26,12 @@
                 <div id="create">
                     <form action="/" method="post">
                         <div class="field-wrap">
-                            <label>
-                                заглавие<span class="req">*</span>
-                            </label>
+                            <p>заглавие</p>
                             @Html.TextAreaFor(m => m.Title, new { @class = "text-box", autocomplete = "off" })
                         </div>
                         <div class="field-wrap">
-                            <label>
-                                съдържание<span class="req">*</span>
-                            </label>
-                            @Html.TextBoxFor(m => m.Body, new { @class = "text-box", autocomplete = "off" })
+                            <p>съдържание</p>
+                            @Html.TextAreaFor(m => m.Body, new { @class = "text-box", autocomplete = "off" })
                         </div>
                         <button class="submit-button">създай</button>
                     </form>

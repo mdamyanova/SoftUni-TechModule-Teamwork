@@ -62,9 +62,7 @@
                 user.Dislikes = 300;
             }
 
-            this.db.Entry(this.currentUser).State = EntityState.Modified;
             this.db.Entry(user).State = EntityState.Modified;
-            
             this.db.SaveChanges();
             return this.RedirectToAction("Index");
         }

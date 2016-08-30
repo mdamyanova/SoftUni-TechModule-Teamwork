@@ -32,5 +32,10 @@
             var photos = this.db.Photos.Where(p => p.AuthorId == this.user.Id).ToList();
             return this.View(photos);
         }
+
+        public ActionResult AddPhoto()
+        {
+            return this.RedirectToAction("Gallery");
+        }
     }
 }

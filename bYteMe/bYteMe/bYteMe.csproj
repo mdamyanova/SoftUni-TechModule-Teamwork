@@ -211,7 +211,6 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Delivery.cs" />
     <Compile Include="Models\ExtendedIdentityModels.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\bYteMeDbContext.cs" />
@@ -239,7 +238,8 @@
     <Content Include="Content\Posts\PostsStyle.css" />
     <Content Include="Content\ProfilesStyle.css" />
     <Content Include="Content\OrdersStyle.css" />
-    <Content Include="Content\ProfileStyle.css" />
+    <Content Include="Content\Profile\GalleryStyle.css" />
+    <Content Include="Content\Profile\ProfileStyle.css" />
     <Content Include="Content\Register\RegisterStyle.css" />
     <Content Include="Content\Register\Normalize.css" />
     <Content Include="favicon.ico" />
@@ -247,13 +247,22 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\aboutus-photo.jpg" />
-    <Content Include="images\default-profile-picture.jpg" />
+    <Content Include="images\default-profile-picture.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="images\facebook.png" />
     <Content Include="images\logo.jpg" />
     <Content Include="images\orders\alcohol-roulette.jpg" />
     <Content Include="images\orders\beer.jpg" />
     <Content Include="images\orders\beers.jpg" />
     <Content Include="images\orders\rakia.jpg" />
+    <Content Include="images\profiles\classy_dev.jpg" />
+    <Content Include="images\profiles\desperate_wife.jpg" />
+    <Content Include="images\profiles\gosho.jpg" />
+    <Content Include="images\profiles\grape.jpg" />
+    <Content Include="images\profiles\hacker.jpg" />
+    <Content Include="images\profiles\ouzo134.jpg" />
+    <Content Include="images\profiles\sasheto0o.jpg" />
     <Content Include="images\site-background.jpg" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
