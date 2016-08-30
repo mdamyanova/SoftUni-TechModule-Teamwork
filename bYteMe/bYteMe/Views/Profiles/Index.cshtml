@@ -10,7 +10,7 @@
 <head>
     <title>профили</title>
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
-    <link rel="Stylesheet" href="@Href("~/Content/ProfileStyle.css")" />
+    <link rel="Stylesheet" href="@Href("~/Content/ProfileStyle.css")"/>
     <link rel="Stylesheet" href="@Href("~/Content/ProfilesStyle.css")"/>
 </head>
 <body>
@@ -58,14 +58,17 @@
                 </div>
                 <input type="button" class="gallery-button" value="галерия" onclick="location.href = '@Url.Action("Gallery", "Profile")'"/>
             </div>
-              <div class="profile-likes">
-                <div class="likes-count">харесвания: <p class="like-field">@user.Likes</p> нехаресвания: <p class="like-field">@user.Dislikes</p></div>
-                <br/>
-                <div>Харесва ли ти: </div>
-                <input type="button" class="like-button" value="да" onclick="" />
-                <input type="button" class="like-button" value="не" onclick="" />
-              </div>          
-        </div>       
+            <div class="profile-likes">
+                <div class="likes-count">харесвания:
+                    <p class="like-field">@user.Likes</p> нехаресвания:
+                    <p class="like-field">@user.Dislikes</p>
+                </div>
+                <br/>                  
+                        <div>Харесва ли ти: </div>
+                        @Html.ActionLink("да", "Like", "Profiles", new { name = user.UserName }, null)
+                        @Html.ActionLink("не", "Dislike", "Profiles", new { name = user.UserName }, null)               
+            </div>
+        </div>
     }
 }
 </body>

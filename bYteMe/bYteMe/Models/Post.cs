@@ -22,8 +22,6 @@ namespace bYteMe
         public Post()
         {
             this.Date = DateTime.Now;
-            //this.AuthorId = this.Author.Id;
-            //this.Author = this.currentUser;
         }
 
         [Key]

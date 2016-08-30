@@ -11,6 +11,8 @@ using Microsoft.Owin.Security;
 
 namespace bYteMe.Controllers
 {
+    using System.Collections.Generic;
+
     [Authorize]
     public class AccountController : Controller
     {
@@ -180,7 +182,7 @@ namespace bYteMe.Controllers
                                        ProfilePhoto = data,
                                        Password = model.Password,
                                        Email = model.Email
-                                   };
+                    };
                     var result = await this.UserManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {

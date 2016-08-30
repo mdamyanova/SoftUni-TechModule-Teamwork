@@ -5,16 +5,13 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace bYteMe.Models
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     // You can add profile data for the user by adding more properties to your User class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class User : IdentityUser
     {
-        //[Key]
-        //[Column(Order = 0)]
-        //public int Id { get; set; }
-
         [Column(Order = 1)]
         [StringLength(50)]
         public override string UserName { get; set; }
