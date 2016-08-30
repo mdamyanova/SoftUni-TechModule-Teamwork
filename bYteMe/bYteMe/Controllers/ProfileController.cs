@@ -33,9 +33,11 @@
             return this.View(photos);
         }
 
-        public ActionResult AddPhoto()
+        public ActionResult AddPhoto(string pictureArr, string description)
         {
-            return this.RedirectToAction("Gallery");
+            var photo = new Photo();
+
+            return this.View();
         }
     }
 }

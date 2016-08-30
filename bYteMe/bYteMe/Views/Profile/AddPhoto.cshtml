@@ -1,0 +1,48 @@
+﻿@using System.Web.Mvc.Html
+@model bYteMe.Photo
+@{
+    ViewBag.Title = "качване на снимка";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title</title> 
+    <link rel="stylesheet" href="/Content/Normalize.css">
+    <link rel="stylesheet" href="/Content/Gallery/GalleryFormsStyle.css">
+</head>
+<body>
+    <div class="form">
+        <ul class="tab-group">
+            <li class="tab" onclick="location.href = 'Index'">@Html.ActionLink("назад", "Gallery")</li>
+            <li class="tab active"><a>качване</a></li>
+        </ul>
+        <div class="tab-content">
+            @using (Html.BeginForm("AddPhoto", "Profile", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div id="edit">           
+                    <form action="/" method="post">
+                        <div class="top-row">
+                            @Html.TextBoxFor(m => m.PhotoPicture, new { @class = "choose-file-button", type = "file" })
+                        </div>
+                        <div class="field-wrap">
+                            <label>
+                                описание<span class="req">*</span>
+                            </label>
+                            @Html.TextAreaFor(m => m.Description, new { @class = "text-box", autocomplete = "off" })
+                        </div>
+                        <button class="submit-button">качване на снимка</button>
+                    </form>
+                </div>
+            }
+        </div>
+    </div>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="/Scripts/loginScript.js"></script>
+</body>
+</html>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

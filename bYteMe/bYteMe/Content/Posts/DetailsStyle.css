@@ -1,25 +1,14 @@
-﻿html {
-    overflow-y: scroll;
-}
-
-body {
-    padding: 60px;
-    background: #c1bdba;
-    font-family: 'Tahoma', sans-serif;
+﻿p {
+    color: white;
 }
 
 .information {
-    background: #13232f;
-    padding: 40px;
+     background: #13232f;
+    padding: 10px;
     max-width: 1000px;
     margin: 40px auto;
     border-radius: 4px;
-    box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
-    overflow: auto;
-}
-
-p {
-    color: white;
+    box-shadow: 0 4px 10px 4px #13232f;
 }
 
 .title {
@@ -32,12 +21,16 @@ p {
 
 .action-link {
     color: #1ab188;
+    font-weight: bold;
+    text-decoration: none;
 }
 .action-link:active {
     color: #1ab188;
 }
 .action-link:hover {
     color: white;
+    text-decoration: none;
+    
 }
 .action-link:visited {
     color: #1ab188;

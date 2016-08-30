@@ -225,6 +225,7 @@
     <Content Include="Content\AboutStyle.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Gallery\GalleryFormsStyle.css" />
     <Content Include="Content\HomeStyle.css" />
     <Content Include="Content\Login\LoginStyle.css" />
     <Content Include="Content\Login\Normalize.css" />
@@ -329,6 +330,7 @@
     <Content Include="Views\Manage\EditProfile.cshtml" />
     <Content Include="Views\Manage\Delete.cshtml" />
     <Content Include="Views\Orders\Order.cshtml" />
+    <Content Include="Views\Profile\AddPhoto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
