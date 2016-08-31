@@ -249,6 +249,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="images\facebook.png" />
+    <Content Include="images\favicon.jpg" />
     <Content Include="images\logo.jpg" />
     <Content Include="images\orders\alcohol-roulette.jpg" />
     <Content Include="images\orders\beer.jpg" />
