@@ -40,7 +40,7 @@
             @* TODO: List posts from current user *@
             <div class="posts">
                 @{
-                    bYteMeDbContext db = new bYteMeDbContext();
+                    bYteMeDbContext db = new bYteMeDbContext("bYteMeDbContext", string.Empty);
                     var posts = db.Posts.Select(u => u).Where(p => p.AuthorId == Model.Id);
                     if (posts.Any())
                     {

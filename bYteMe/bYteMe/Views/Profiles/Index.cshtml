@@ -41,7 +41,7 @@
                 </div>
                 <div class="posts">
                     @{
-                        bYteMeDbContext db = new bYteMeDbContext();
+                        bYteMeDbContext db = new bYteMeDbContext("bYteMeDbContext", string.Empty);
                         var posts = db.Posts.Select(u => u).Where(p => p.AuthorId == user.Id);
                         if (posts.Any())
                         {
