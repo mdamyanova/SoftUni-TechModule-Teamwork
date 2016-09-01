@@ -8,13 +8,10 @@ namespace bYteMe.Models
 
     public class bYteMeDbContext : IdentityDbContext<User>
     {
-        private string _schemaName = string.Empty;
-
         // replace default connection with bYteMe database 
-        public bYteMeDbContext(string connectionName, string schemaName)
-            : base(connectionName)
+        public bYteMeDbContext()
+            : base("bYteMeDbContext")
         {
-            this._schemaName = schemaName;
         }
 
         public virtual DbSet<Order> Orders { get; set; }
@@ -27,13 +24,12 @@ namespace bYteMe.Models
 
         public static bYteMeDbContext Create()
         {
-            return new bYteMeDbContext("bYteMeDbContext", string.Empty);
+            return new bYteMeDbContext();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            Database.SetInitializer<bYteMeDbContext>(new CreateDatabaseIfNotExists<bYteMeDbContext>());
-            modelBuilder.Entity<User>().ToTable("bYteMeDbContext", this._schemaName)
+        {          
+            modelBuilder.Entity<User>()
                 .Property(e => e.UserName)
                 .IsUnicode(false);
 

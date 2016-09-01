@@ -17,7 +17,7 @@
     </div>
     <div class="author-date">
         @{
-            bYteMeDbContext db = new bYteMeDbContext("bYteMeDbContext", string.Empty);
+            bYteMeDbContext db = new bYteMeDbContext();
             var author = db.Users.Select(u => u).FirstOrDefault(u => u.Id == Model.AuthorId);
         }
         <p>created on @Model.Date by @author.FullName (@author.UserName)</p>

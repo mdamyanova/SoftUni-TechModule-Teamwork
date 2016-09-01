@@ -17,7 +17,7 @@ namespace bYteMe.Controllers
     [Authorize]
     public class ManageController : Controller
     {
-        private readonly bYteMeDbContext db = new bYteMeDbContext("bYteMeDbContext", string.Empty);
+        private readonly bYteMeDbContext db = new bYteMeDbContext();
 
         readonly User currentUser = System.Web.HttpContext.Current.GetOwinContext()
                .GetUserManager<ApplicationUserManager>()
