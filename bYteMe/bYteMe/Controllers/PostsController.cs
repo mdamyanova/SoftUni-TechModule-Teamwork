@@ -16,7 +16,7 @@ namespace bYteMe.Controllers
     [Authorize]
     public class PostsController : Controller
     {
-        private readonly bYteMeDbContext db = new bYteMeDbContext();
+        private readonly bYteMeDbContext db = new bYteMeDbContext("bYteMeDbContext", string.Empty);
 
         // GET: Posts
         public ActionResult Index()

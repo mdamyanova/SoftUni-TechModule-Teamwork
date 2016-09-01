@@ -16,7 +16,7 @@
                 .GetUserManager<ApplicationUserManager>()
                 .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
 
-        private readonly bYteMeDbContext db = new bYteMeDbContext();
+        private readonly bYteMeDbContext db = new bYteMeDbContext("bYteMeDbContext", string.Empty);
 
         public ActionResult Index()
         {

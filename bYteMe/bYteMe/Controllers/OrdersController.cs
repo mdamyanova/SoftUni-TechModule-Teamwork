@@ -15,7 +15,7 @@
         {
             const int DefaultCountOfOrders = 4;
             const int DefaultCountDislikes = 8;
-            var db = new bYteMeDbContext();
+            var db = new bYteMeDbContext("bYteMeDbContext", string.Empty);
             if (!db.Orders.Any())
             {
                 var startDirectory = AppDomain.CurrentDomain.BaseDirectory;

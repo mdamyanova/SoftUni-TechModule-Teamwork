@@ -4,12 +4,17 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace bYteMe.Models
 {
+    using System;
+
     public class bYteMeDbContext : IdentityDbContext<User>
     {
+        private string _schemaName = string.Empty;
+
         // replace default connection with bYteMe database 
-        public bYteMeDbContext()
-            : base("bYteMeDbContext", throwIfV1Schema: false)
+        public bYteMeDbContext(string connectionName, string schemaName)
+            : base(connectionName)
         {
+            this._schemaName = schemaName;
         }
 
         public virtual DbSet<Order> Orders { get; set; }
@@ -22,12 +27,13 @@ namespace bYteMe.Models
 
         public static bYteMeDbContext Create()
         {
-            return new bYteMeDbContext();
+            return new bYteMeDbContext("bYteMeDbContext", string.Empty);
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
+            Database.SetInitializer<bYteMeDbContext>(new CreateDatabaseIfNotExists<bYteMeDbContext>());
+            modelBuilder.Entity<User>().ToTable("bYteMeDbContext", this._schemaName)
                 .Property(e => e.UserName)
                 .IsUnicode(false);
 

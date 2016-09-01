@@ -8,7 +8,7 @@
     [Authorize]
     public class ProfilesController : Controller
     {
-        private readonly bYteMeDbContext db = new bYteMeDbContext();
+        private readonly bYteMeDbContext db = new bYteMeDbContext("bYteMeDbContext", string.Empty);
 
         public ActionResult Index()
         {

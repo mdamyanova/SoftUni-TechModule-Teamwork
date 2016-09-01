@@ -143,7 +143,7 @@ namespace bYteMe.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(ExtendedIdentityModels model)
         {
-            bYteMeDbContext db = new bYteMeDbContext();
+            bYteMeDbContext db = new bYteMeDbContext("bYteMeDbContext", string.Empty);
             if (this.ModelState.IsValid)
             {
                 if (model.UserProfilePicture != null)
