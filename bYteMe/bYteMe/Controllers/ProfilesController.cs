@@ -5,7 +5,7 @@
     using System.Web.Mvc;
     using bYteMe.Models;
 
-    //[Authorize]
+    [Authorize]
     public class ProfilesController : Controller
     {
         private readonly bYteMeDbContext db = new bYteMeDbContext();
