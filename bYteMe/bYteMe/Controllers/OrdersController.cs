@@ -8,7 +8,7 @@
     using bYteMe.Constants;
     using bYteMe.Models;
 
-    [Authorize]
+    //[Authorize]
     public class OrdersController : Controller
     {
         public ActionResult Index()
